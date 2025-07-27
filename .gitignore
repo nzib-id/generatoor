@@ -1,0 +1,13 @@
+# === GLOBAL ===
+node_modules/
+.env
+.env.local
+.DS_Store
+
+# === NEXT.JS ===
+frontend/.next/
+frontend/node_modules/
+frontend/.env.local
+
+# === Optional: jaga folder kosong tetap ke-track
+**/.gitkeep
