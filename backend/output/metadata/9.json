@@ -1,0 +1,12 @@
+{
+  "name": "E=mc2",
+  "token_id": 99124,
+  "edition": 9,
+  "image": "ipfs://CID/9.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "E=mc2"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Midnight reaper",
+  "token_id": 83262,
+  "edition": 14,
+  "image": "ipfs://CID/14.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Midnight reaper"
+    }
+  ]
+}

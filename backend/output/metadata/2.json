@@ -1,0 +1,12 @@
+{
+  "name": "Banana Cat",
+  "token_id": 59220,
+  "edition": 2,
+  "image": "ipfs://CID/2.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Banana Cat"
+    }
+  ]
+}

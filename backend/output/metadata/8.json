@@ -1,0 +1,13 @@
+{
+  "name": "Crypto Gorilla",
+  "token_id": 37496,
+  "edition": 8,
+  "image": "ipfs://CID/8.gif",
+  "animation_url": "ipfs://CID/8.gif",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Crypto Gorilla"
+    }
+  ]
+}

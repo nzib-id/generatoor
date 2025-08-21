@@ -1,0 +1,12 @@
+{
+  "name": "Tomoro",
+  "token_id": 16051,
+  "edition": 20,
+  "image": "ipfs://CID/20.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Tomoro"
+    }
+  ]
+}

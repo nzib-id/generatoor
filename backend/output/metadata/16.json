@@ -1,0 +1,12 @@
+{
+  "name": "OF Girl",
+  "token_id": 9103,
+  "edition": 16,
+  "image": "ipfs://CID/16.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "OF Girl"
+    }
+  ]
+}

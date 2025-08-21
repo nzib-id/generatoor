@@ -1,0 +1,12 @@
+{
+  "name": "Eternal Artist",
+  "token_id": 83919,
+  "edition": 10,
+  "image": "ipfs://CID/10.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Eternal Artist"
+    }
+  ]
+}

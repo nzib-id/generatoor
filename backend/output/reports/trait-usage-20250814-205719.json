@@ -1,0 +1,804 @@
+{
+  "generated_at": "2025-08-14T13:57:19.570Z",
+  "total_tokens": 1500,
+  "totals_by_trait_type": {
+    "type": 1500,
+    "background": 1480,
+    "body": 1480,
+    "head": 1419,
+    "face": 1480
+  },
+  "usage": [
+    {
+      "trait_type": "background",
+      "value": "pink",
+      "count": 269,
+      "percent": 17.93
+    },
+    {
+      "trait_type": "background",
+      "value": "hyperliquid",
+      "count": 258,
+      "percent": 17.2
+    },
+    {
+      "trait_type": "background",
+      "value": "purple",
+      "count": 255,
+      "percent": 17
+    },
+    {
+      "trait_type": "background",
+      "value": "night",
+      "count": 236,
+      "percent": 15.73
+    },
+    {
+      "trait_type": "background",
+      "value": "yellow",
+      "count": 232,
+      "percent": 15.47
+    },
+    {
+      "trait_type": "background",
+      "value": "grey",
+      "count": 230,
+      "percent": 15.33
+    },
+    {
+      "trait_type": "body",
+      "value": "puffer_jacket_-_red",
+      "count": 63,
+      "percent": 4.2
+    },
+    {
+      "trait_type": "body",
+      "value": "puffer_jacket_-_purple",
+      "count": 61,
+      "percent": 4.07
+    },
+    {
+      "trait_type": "body",
+      "value": "puffer_jacket_-_white",
+      "count": 60,
+      "percent": 4
+    },
+    {
+      "trait_type": "body",
+      "value": "pride_shirt",
+      "count": 57,
+      "percent": 3.8
+    },
+    {
+      "trait_type": "body",
+      "value": "polo_shirt_-_dark",
+      "count": 53,
+      "percent": 3.53
+    },
+    {
+      "trait_type": "body",
+      "value": "track_suit_-_red",
+      "count": 52,
+      "percent": 3.47
+    },
+    {
+      "trait_type": "body",
+      "value": "yellow_hoodie",
+      "count": 52,
+      "percent": 3.47
+    },
+    {
+      "trait_type": "body",
+      "value": "suit_-_navy",
+      "count": 51,
+      "percent": 3.4
+    },
+    {
+      "trait_type": "body",
+      "value": "turtleneck_-_maroon",
+      "count": 50,
+      "percent": 3.33
+    },
+    {
+      "trait_type": "body",
+      "value": "super",
+      "count": 50,
+      "percent": 3.33
+    },
+    {
+      "trait_type": "body",
+      "value": "ski_jacket",
+      "count": 50,
+      "percent": 3.33
+    },
+    {
+      "trait_type": "body",
+      "value": "turtleneck_-_black",
+      "count": 49,
+      "percent": 3.27
+    },
+    {
+      "trait_type": "body",
+      "value": "track_suit_-_yellow",
+      "count": 49,
+      "percent": 3.27
+    },
+    {
+      "trait_type": "body",
+      "value": "polo_shirt_-_light",
+      "count": 47,
+      "percent": 3.13
+    },
+    {
+      "trait_type": "body",
+      "value": "pink_hoodie",
+      "count": 44,
+      "percent": 2.93
+    },
+    {
+      "trait_type": "body",
+      "value": "fast_food_worker_dark",
+      "count": 43,
+      "percent": 2.87
+    },
+    {
+      "trait_type": "body",
+      "value": "suit_-_black",
+      "count": 41,
+      "percent": 2.73
+    },
+    {
+      "trait_type": "body",
+      "value": "denim_jacket",
+      "count": 41,
+      "percent": 2.73
+    },
+    {
+      "trait_type": "body",
+      "value": "safety",
+      "count": 40,
+      "percent": 2.67
+    },
+    {
+      "trait_type": "body",
+      "value": "cop",
+      "count": 39,
+      "percent": 2.6
+    },
+    {
+      "trait_type": "body",
+      "value": "nasa",
+      "count": 38,
+      "percent": 2.53
+    },
+    {
+      "trait_type": "body",
+      "value": "black_hoodie",
+      "count": 38,
+      "percent": 2.53
+    },
+    {
+      "trait_type": "body",
+      "value": "leather_jacket",
+      "count": 37,
+      "percent": 2.47
+    },
+    {
+      "trait_type": "body",
+      "value": "track_suit_-_green",
+      "count": 37,
+      "percent": 2.47
+    },
+    {
+      "trait_type": "body",
+      "value": "box",
+      "count": 36,
+      "percent": 2.4
+    },
+    {
+      "trait_type": "body",
+      "value": "green_hoodie",
+      "count": 35,
+      "percent": 2.33
+    },
+    {
+      "trait_type": "body",
+      "value": "bali_bike_driver",
+      "count": 32,
+      "percent": 2.13
+    },
+    {
+      "trait_type": "body",
+      "value": "fast_food_worker_red",
+      "count": 27,
+      "percent": 1.8
+    },
+    {
+      "trait_type": "body",
+      "value": "jersey",
+      "count": 26,
+      "percent": 1.73
+    },
+    {
+      "trait_type": "body",
+      "value": "pope",
+      "count": 24,
+      "percent": 1.6
+    },
+    {
+      "trait_type": "body",
+      "value": "pinkguy",
+      "count": 23,
+      "percent": 1.53
+    },
+    {
+      "trait_type": "body",
+      "value": "banana",
+      "count": 22,
+      "percent": 1.47
+    },
+    {
+      "trait_type": "body",
+      "value": "tanktop",
+      "count": 21,
+      "percent": 1.4
+    },
+    {
+      "trait_type": "body",
+      "value": "monkie",
+      "count": 20,
+      "percent": 1.33
+    },
+    {
+      "trait_type": "body",
+      "value": "chest_lace",
+      "count": 18,
+      "percent": 1.2
+    },
+    {
+      "trait_type": "body",
+      "value": "ninja",
+      "count": 16,
+      "percent": 1.07
+    },
+    {
+      "trait_type": "body",
+      "value": "bhikku",
+      "count": 14,
+      "percent": 0.93
+    },
+    {
+      "trait_type": "body",
+      "value": "fish_suit",
+      "count": 11,
+      "percent": 0.73
+    },
+    {
+      "trait_type": "body",
+      "value": "niqab",
+      "count": 8,
+      "percent": 0.53
+    },
+    {
+      "trait_type": "body",
+      "value": "duckie",
+      "count": 5,
+      "percent": 0.33
+    },
+    {
+      "trait_type": "face",
+      "value": "possessed",
+      "count": 117,
+      "percent": 7.8
+    },
+    {
+      "trait_type": "face",
+      "value": "rosa_visor",
+      "count": 112,
+      "percent": 7.47
+    },
+    {
+      "trait_type": "face",
+      "value": "serious",
+      "count": 111,
+      "percent": 7.4
+    },
+    {
+      "trait_type": "face",
+      "value": "yawn",
+      "count": 108,
+      "percent": 7.2
+    },
+    {
+      "trait_type": "face",
+      "value": "monocle",
+      "count": 102,
+      "percent": 6.8
+    },
+    {
+      "trait_type": "face",
+      "value": "nerd",
+      "count": 101,
+      "percent": 6.73
+    },
+    {
+      "trait_type": "face",
+      "value": "neko",
+      "count": 101,
+      "percent": 6.73
+    },
+    {
+      "trait_type": "face",
+      "value": "sunglasses",
+      "count": 100,
+      "percent": 6.67
+    },
+    {
+      "trait_type": "face",
+      "value": "sleep",
+      "count": 91,
+      "percent": 6.07
+    },
+    {
+      "trait_type": "face",
+      "value": "normal",
+      "count": 90,
+      "percent": 6
+    },
+    {
+      "trait_type": "face",
+      "value": "airpod",
+      "count": 73,
+      "percent": 4.87
+    },
+    {
+      "trait_type": "face",
+      "value": "doja_visor",
+      "count": 67,
+      "percent": 4.47
+    },
+    {
+      "trait_type": "face",
+      "value": "degeneracy",
+      "count": 62,
+      "percent": 4.13
+    },
+    {
+      "trait_type": "face",
+      "value": "clown",
+      "count": 59,
+      "percent": 3.93
+    },
+    {
+      "trait_type": "face",
+      "value": "black_eye_club",
+      "count": 56,
+      "percent": 3.73
+    },
+    {
+      "trait_type": "face",
+      "value": "kiiro_visor",
+      "count": 53,
+      "percent": 3.53
+    },
+    {
+      "trait_type": "face",
+      "value": "full_beard",
+      "count": 47,
+      "percent": 3.13
+    },
+    {
+      "trait_type": "face",
+      "value": "bearded",
+      "count": 30,
+      "percent": 2
+    },
+    {
+      "trait_type": "head",
+      "value": "fast_food_worker_cap_-_black",
+      "count": 63,
+      "percent": 4.2
+    },
+    {
+      "trait_type": "head",
+      "value": "cosmic_bandana",
+      "count": 56,
+      "percent": 3.73
+    },
+    {
+      "trait_type": "head",
+      "value": "shithead",
+      "count": 54,
+      "percent": 3.6
+    },
+    {
+      "trait_type": "head",
+      "value": "planthead",
+      "count": 52,
+      "percent": 3.47
+    },
+    {
+      "trait_type": "head",
+      "value": "fast_food_worker_-_red",
+      "count": 52,
+      "percent": 3.47
+    },
+    {
+      "trait_type": "head",
+      "value": "stellar_strip_bandana",
+      "count": 52,
+      "percent": 3.47
+    },
+    {
+      "trait_type": "head",
+      "value": "duct-taped_banana",
+      "count": 52,
+      "percent": 3.47
+    },
+    {
+      "trait_type": "head",
+      "value": "none",
+      "count": 52,
+      "percent": 3.47
+    },
+    {
+      "trait_type": "head",
+      "value": "traffic_cone",
+      "count": 52,
+      "percent": 3.47
+    },
+    {
+      "trait_type": "head",
+      "value": "comb-over",
+      "count": 51,
+      "percent": 3.4
+    },
+    {
+      "trait_type": "head",
+      "value": "straw_hat",
+      "count": 50,
+      "percent": 3.33
+    },
+    {
+      "trait_type": "head",
+      "value": "red_baseball_cap",
+      "count": 50,
+      "percent": 3.33
+    },
+    {
+      "trait_type": "head",
+      "value": "safety_helmet",
+      "count": 49,
+      "percent": 3.27
+    },
+    {
+      "trait_type": "head",
+      "value": "fuego",
+      "count": 49,
+      "percent": 3.27
+    },
+    {
+      "trait_type": "head",
+      "value": "broccoli",
+      "count": 46,
+      "percent": 3.07
+    },
+    {
+      "trait_type": "head",
+      "value": "headband",
+      "count": 46,
+      "percent": 3.07
+    },
+    {
+      "trait_type": "head",
+      "value": "shadow_crown",
+      "count": 45,
+      "percent": 3
+    },
+    {
+      "trait_type": "head",
+      "value": "mohawk",
+      "count": 45,
+      "percent": 3
+    },
+    {
+      "trait_type": "head",
+      "value": "green_baseball_cap",
+      "count": 43,
+      "percent": 2.87
+    },
+    {
+      "trait_type": "head",
+      "value": "mullet",
+      "count": 39,
+      "percent": 2.6
+    },
+    {
+      "trait_type": "head",
+      "value": "cop_cap",
+      "count": 39,
+      "percent": 2.6
+    },
+    {
+      "trait_type": "head",
+      "value": "duck",
+      "count": 38,
+      "percent": 2.53
+    },
+    {
+      "trait_type": "head",
+      "value": "satan_horn",
+      "count": 37,
+      "percent": 2.47
+    },
+    {
+      "trait_type": "head",
+      "value": "afro",
+      "count": 36,
+      "percent": 2.4
+    },
+    {
+      "trait_type": "head",
+      "value": "angel",
+      "count": 36,
+      "percent": 2.4
+    },
+    {
+      "trait_type": "head",
+      "value": "antenna",
+      "count": 35,
+      "percent": 2.33
+    },
+    {
+      "trait_type": "head",
+      "value": "arabian_scarf",
+      "count": 34,
+      "percent": 2.27
+    },
+    {
+      "trait_type": "head",
+      "value": "textured_quiff",
+      "count": 32,
+      "percent": 2.13
+    },
+    {
+      "trait_type": "head",
+      "value": "side_part",
+      "count": 28,
+      "percent": 1.87
+    },
+    {
+      "trait_type": "head",
+      "value": "long_hair_-_black",
+      "count": 26,
+      "percent": 1.73
+    },
+    {
+      "trait_type": "head",
+      "value": "blue_checkmark",
+      "count": 23,
+      "percent": 1.53
+    },
+    {
+      "trait_type": "head",
+      "value": "long_hair_-_blonde",
+      "count": 22,
+      "percent": 1.47
+    },
+    {
+      "trait_type": "head",
+      "value": "fiery_fringe",
+      "count": 20,
+      "percent": 1.33
+    },
+    {
+      "trait_type": "head",
+      "value": "the_trump",
+      "count": 15,
+      "percent": 1
+    },
+    {
+      "trait_type": "type",
+      "value": "female_-_white",
+      "count": 192,
+      "percent": 12.8
+    },
+    {
+      "trait_type": "type",
+      "value": "male_-_white",
+      "count": 185,
+      "percent": 12.33
+    },
+    {
+      "trait_type": "type",
+      "value": "male_-_yellow",
+      "count": 181,
+      "percent": 12.07
+    },
+    {
+      "trait_type": "type",
+      "value": "female_-_yellow",
+      "count": 180,
+      "percent": 12
+    },
+    {
+      "trait_type": "type",
+      "value": "female_-_black",
+      "count": 178,
+      "percent": 11.87
+    },
+    {
+      "trait_type": "type",
+      "value": "male_-_black",
+      "count": 173,
+      "percent": 11.53
+    },
+    {
+      "trait_type": "type",
+      "value": "male_-_alien",
+      "count": 109,
+      "percent": 7.27
+    },
+    {
+      "trait_type": "type",
+      "value": "male_-_simpson",
+      "count": 103,
+      "percent": 6.87
+    },
+    {
+      "trait_type": "type",
+      "value": "female_-_simpson",
+      "count": 90,
+      "percent": 6
+    },
+    {
+      "trait_type": "type",
+      "value": "female_-_alien",
+      "count": 89,
+      "percent": 5.93
+    },
+    {
+      "trait_type": "type",
+      "value": "adroable_filter",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "gandhi",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "holly_devil",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "master_yoga",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "mr_actually_white",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "of_girl",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "pepe",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "sidney_tweeny",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "tomoro",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "tma",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "crypto_gorilla",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "banana_cat",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "midnight_reaper",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "bin_ladeen",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "bing_chilling",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "black_in_man",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "captain_parodee",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "cheeses",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "emc2",
+      "count": 1,
+      "percent": 0.07
+    },
+    {
+      "trait_type": "type",
+      "value": "eternal_artist",
+      "count": 1,
+      "percent": 0.07
+    }
+  ],
+  "zero_usage": [
+    {
+      "trait_type": "type",
+      "value": "alien"
+    },
+    {
+      "trait_type": "type",
+      "value": "black"
+    },
+    {
+      "trait_type": "type",
+      "value": "simpson"
+    },
+    {
+      "trait_type": "type",
+      "value": "white"
+    },
+    {
+      "trait_type": "type",
+      "value": "yellow"
+    }
+  ],
+  "rules_weights_attached": true
+}

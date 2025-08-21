@@ -1,0 +1,1099 @@
+{
+  "weights": {
+    "face__": {
+      "Airpod": 83,
+      "Bearded": 83,
+      "Black Eye Club": 83,
+      "Clown": 83,
+      "Degeneracy": 83,
+      "Doja Visor": 83,
+      "Full Beard": 83,
+      "Kiiro Visor": 83,
+      "Monocle": 83,
+      "Neko": 83,
+      "Nerd": 83,
+      "Normal": 83,
+      "Possessed": 83,
+      "Rosa Visor": 83,
+      "Serious": 83,
+      "Sleep": 83,
+      "Sunglasses": 83,
+      "Yawn": 83,
+      "airpod": 100,
+      "bearded": 100,
+      "black_eye_club": 100,
+      "clown": 100,
+      "degeneracy": 100,
+      "doja_visor": 100,
+      "full_beard": 100,
+      "kiiro_visor": 100,
+      "monocle": 100,
+      "neko": 100,
+      "nerd": 100,
+      "normal": 100,
+      "possessed": 100,
+      "rosa_visor": 100,
+      "serious": 100,
+      "sleep": 100,
+      "sunglasses": 100,
+      "yawn": 100
+    },
+    "head__": {
+      "Afro": 44,
+      "Angel": 44,
+      "Antenna": 44,
+      "Arabian Scarf": 44,
+      "Blue Checkmark": 44,
+      "Broccoli": 44,
+      "Comb-over": 44,
+      "Cop Cap": 44,
+      "Cosmic Bandana": 44,
+      "Duck": 44,
+      "Duct-Taped Banana": 44,
+      "Fast Food Worker - Red": 44,
+      "Fast Food Worker Cap - Black": 44,
+      "Fiery Fringe": 44,
+      "Fuego": 44,
+      "Green Baseball Cap": 44,
+      "Headband": 44,
+      "Long Hair - Black": 44,
+      "Long Hair - Blonde": 44,
+      "Mohawk": 44,
+      "Mullet": 44,
+      "None": 44,
+      "Planthead": 44,
+      "Red Baseball Cap": 44,
+      "Safety Helmet": 44,
+      "Satan Horn": 44,
+      "Shadow Crown": 44,
+      "Shithead": 44,
+      "Side Part": 44,
+      "Stellar Strip Bandana": 44,
+      "Straw Hat": 44,
+      "Textured Quiff": 44,
+      "The Trump": 44,
+      "Traffic Cone": 44,
+      "afro": 100,
+      "angel": 100,
+      "antenna": 100,
+      "arabian_scarf": 100,
+      "blue_checkmark": 100,
+      "broccoli": 100,
+      "comb-over": 100,
+      "cop_cap": 100,
+      "cosmic_bandana": 100,
+      "duck": 100,
+      "duct-taped_banana": 100,
+      "fast_food_worker_-_red": 100,
+      "fast_food_worker_cap_-_black": 100,
+      "fiery_fringe": 100,
+      "fuego": 100,
+      "green_baseball_cap": 100,
+      "headband": 100,
+      "long_hair_-_black": 100,
+      "long_hair_-_blonde": 100,
+      "mohawk": 100,
+      "mullet": 100,
+      "none": 100,
+      "planthead": 100,
+      "red_baseball_cap": 100,
+      "safety_helmet": 100,
+      "satan_horn": 100,
+      "shadow_crown": 100,
+      "shithead": 100,
+      "side_part": 100,
+      "stellar_strip_bandana": 100,
+      "straw_hat": 100,
+      "textured_quiff": 100,
+      "the_trump": 100,
+      "traffic_cone": 100
+    },
+    "body__": {
+      "Bali Bike Driver": 37,
+      "Banana": 37,
+      "Bhikku": 37,
+      "Black Hoodie": 37,
+      "Box": 37,
+      "Chest Lace": 37,
+      "Cop": 37,
+      "Denim Jacket": 37,
+      "Duckie": 37,
+      "Fast Food Worker (Dark)": 37,
+      "Fast Food Worker (Red)": 37,
+      "Fish Suit": 37,
+      "Green Hoodie": 37,
+      "Jersey": 37,
+      "Leather Jacket": 37,
+      "Monkie": 37,
+      "NASA": 37,
+      "Ninja": 37,
+      "Niqab": 37,
+      "Pink Hoodie": 37,
+      "PinkGuy": 38,
+      "Polo Shirt - Dark": 38,
+      "Polo Shirt - Light": 38,
+      "Pope": 38,
+      "Pride Shirt": 38,
+      "Puffer Jacket - Purple": 38,
+      "Puffer Jacket - Red": 38,
+      "Puffer Jacket - White": 38,
+      "Safety": 38,
+      "Ski Jacket": 38,
+      "Suit - Black": 38,
+      "Suit - Navy": 38,
+      "Super": 38,
+      "Tanktop": 38,
+      "Track Suit - Green": 38,
+      "Track Suit - Red": 38,
+      "Track Suit - Yellow": 38,
+      "Turtleneck - Black": 38,
+      "Turtleneck - Maroon": 38,
+      "Yellow Hoodie": 38,
+      "bali_bike_driver": 100,
+      "banana": 100,
+      "bhikku": 100,
+      "black_hoodie": 100,
+      "box": 100,
+      "chest_lace": 100,
+      "cop": 100,
+      "denim_jacket": 100,
+      "duckie": 100,
+      "fast_food_worker_dark": 100,
+      "fast_food_worker_red": 100,
+      "fish_suit": 100,
+      "green_hoodie": 100,
+      "jersey": 100,
+      "leather_jacket": 100,
+      "monkie": 100,
+      "nasa": 100,
+      "ninja": 100,
+      "niqab": 100,
+      "pink_hoodie": 100,
+      "pinkguy": 100,
+      "polo_shirt_-_dark": 100,
+      "polo_shirt_-_light": 100,
+      "pope": 100,
+      "pride_shirt": 100,
+      "puffer_jacket_-_purple": 100,
+      "puffer_jacket_-_red": 100,
+      "puffer_jacket_-_white": 100,
+      "safety": 100,
+      "ski_jacket": 100,
+      "suit_-_black": 100,
+      "suit_-_navy": 100,
+      "super": 100,
+      "tanktop": 100,
+      "track_suit_-_green": 100,
+      "track_suit_-_red": 100,
+      "track_suit_-_yellow": 100,
+      "turtleneck_-_black": 100,
+      "turtleneck_-_maroon": 100,
+      "yellow_hoodie": 100
+    },
+    "type__female": {
+      "Alien": 300,
+      "Black": 300,
+      "Simpson": 300,
+      "White": 300,
+      "Yellow": 300,
+      "alien": 100,
+      "black": 100,
+      "simpson": 100,
+      "white": 100,
+      "yellow": 100
+    },
+    "type__male": {
+      "Alien": 300,
+      "Black": 300,
+      "Simpson": 300,
+      "White": 300,
+      "Yellow": 300,
+      "alien": 100,
+      "black": 100,
+      "simpson": 100,
+      "white": 100,
+      "yellow": 100
+    },
+    "background__": {
+      "grey": 250,
+      "hyperliquid": 250,
+      "night": 250,
+      "pink": 250,
+      "purple": 250,
+      "yellow": 250
+    }
+  },
+  "showTo": {
+    "face": {
+      "bearded": [
+        "male"
+      ],
+      "full_beard": [
+        "male"
+      ]
+    },
+    "body": {
+      "niqab": [
+        "female"
+      ],
+      "bhikku": [
+        "male"
+      ],
+      "pope": [
+        "male"
+      ],
+      "chest_lace": [
+        "female"
+      ],
+      "tanktop": [
+        "male"
+      ]
+    },
+    "head": {
+      "long_hair_-_black": [
+        "female"
+      ],
+      "fiery_fringe": [
+        "female"
+      ],
+      "long_hair_-_blonde": [
+        "female"
+      ],
+      "side_part": [
+        "female"
+      ],
+      "the_trump": [
+        "male"
+      ],
+      "comb-over": [
+        "male"
+      ],
+      "textured_quiff": [
+        "male"
+      ]
+    }
+  },
+  "global": {},
+  "specific": [
+    {
+      "trait": "body",
+      "value": "banana",
+      "exclude_with": [
+        {
+          "trait": "head",
+          "value": "afro"
+        },
+        {
+          "trait": "head",
+          "value": "angel"
+        },
+        {
+          "trait": "head",
+          "value": "antenna"
+        },
+        {
+          "trait": "head",
+          "value": "arabian_scarf"
+        },
+        {
+          "trait": "head",
+          "value": "blue_checkmark"
+        },
+        {
+          "trait": "head",
+          "value": "broccoli"
+        },
+        {
+          "trait": "head",
+          "value": "comb-over"
+        },
+        {
+          "trait": "head",
+          "value": "cop_cap"
+        },
+        {
+          "trait": "head",
+          "value": "cosmic_bandana"
+        },
+        {
+          "trait": "head",
+          "value": "duck"
+        },
+        {
+          "trait": "head",
+          "value": "duct-taped_banana"
+        },
+        {
+          "trait": "head",
+          "value": "fast_food_worker_-_red"
+        },
+        {
+          "trait": "head",
+          "value": "fast_food_worker_cap_-_black"
+        },
+        {
+          "trait": "head",
+          "value": "fiery_fringe"
+        },
+        {
+          "trait": "head",
+          "value": "fuego"
+        },
+        {
+          "trait": "head",
+          "value": "green_baseball_cap"
+        },
+        {
+          "trait": "head",
+          "value": "headband"
+        },
+        {
+          "trait": "head",
+          "value": "long_hair_-_black"
+        },
+        {
+          "trait": "head",
+          "value": "long_hair_-_blonde"
+        },
+        {
+          "trait": "head",
+          "value": "mohawk"
+        },
+        {
+          "trait": "head",
+          "value": "mullet"
+        },
+        {
+          "trait": "head",
+          "value": "planthead"
+        },
+        {
+          "trait": "head",
+          "value": "red_baseball_cap"
+        },
+        {
+          "trait": "head",
+          "value": "safety_helmet"
+        },
+        {
+          "trait": "head",
+          "value": "satan_horn"
+        },
+        {
+          "trait": "head",
+          "value": "shadow_crown"
+        },
+        {
+          "trait": "head",
+          "value": "shithead"
+        },
+        {
+          "trait": "head",
+          "value": "side_part"
+        },
+        {
+          "trait": "head",
+          "value": "stellar_strip_bandana"
+        },
+        {
+          "trait": "head",
+          "value": "straw_hat"
+        },
+        {
+          "trait": "head",
+          "value": "textured_quiff"
+        },
+        {
+          "trait": "head",
+          "value": "the_trump"
+        },
+        {
+          "trait": "head",
+          "value": "traffic_cone"
+        }
+      ]
+    },
+    {
+      "trait": "body",
+      "value": "duckie",
+      "exclude_with": [
+        {
+          "trait": "head",
+          "value": "afro"
+        },
+        {
+          "trait": "head",
+          "value": "angel"
+        },
+        {
+          "trait": "head",
+          "value": "antenna"
+        },
+        {
+          "trait": "head",
+          "value": "arabian_scarf"
+        },
+        {
+          "trait": "head",
+          "value": "blue_checkmark"
+        },
+        {
+          "trait": "head",
+          "value": "broccoli"
+        },
+        {
+          "trait": "head",
+          "value": "comb-over"
+        },
+        {
+          "trait": "head",
+          "value": "cop_cap"
+        },
+        {
+          "trait": "head",
+          "value": "cosmic_bandana"
+        },
+        {
+          "trait": "head",
+          "value": "duck"
+        },
+        {
+          "trait": "head",
+          "value": "duct-taped_banana"
+        },
+        {
+          "trait": "head",
+          "value": "fast_food_worker_-_red"
+        },
+        {
+          "trait": "head",
+          "value": "fast_food_worker_cap_-_black"
+        },
+        {
+          "trait": "head",
+          "value": "fiery_fringe"
+        },
+        {
+          "trait": "head",
+          "value": "fuego"
+        },
+        {
+          "trait": "head",
+          "value": "green_baseball_cap"
+        },
+        {
+          "trait": "head",
+          "value": "headband"
+        },
+        {
+          "trait": "head",
+          "value": "long_hair_-_black"
+        },
+        {
+          "trait": "head",
+          "value": "long_hair_-_blonde"
+        },
+        {
+          "trait": "head",
+          "value": "mohawk"
+        },
+        {
+          "trait": "head",
+          "value": "mullet"
+        },
+        {
+          "trait": "head",
+          "value": "planthead"
+        },
+        {
+          "trait": "head",
+          "value": "red_baseball_cap"
+        },
+        {
+          "trait": "head",
+          "value": "safety_helmet"
+        },
+        {
+          "trait": "head",
+          "value": "satan_horn"
+        },
+        {
+          "trait": "head",
+          "value": "shadow_crown"
+        },
+        {
+          "trait": "head",
+          "value": "shithead"
+        },
+        {
+          "trait": "head",
+          "value": "side_part"
+        },
+        {
+          "trait": "head",
+          "value": "stellar_strip_bandana"
+        },
+        {
+          "trait": "head",
+          "value": "straw_hat"
+        },
+        {
+          "trait": "head",
+          "value": "textured_quiff"
+        },
+        {
+          "trait": "head",
+          "value": "the_trump"
+        },
+        {
+          "trait": "head",
+          "value": "traffic_cone"
+        }
+      ]
+    },
+    {
+      "trait": "body",
+      "value": "nasa",
+      "exclude_with": [
+        {
+          "trait": "head",
+          "value": "afro"
+        },
+        {
+          "trait": "head",
+          "value": "angel"
+        },
+        {
+          "trait": "head",
+          "value": "antenna"
+        },
+        {
+          "trait": "head",
+          "value": "arabian_scarf"
+        },
+        {
+          "trait": "head",
+          "value": "broccoli"
+        },
+        {
+          "trait": "head",
+          "value": "comb-over"
+        },
+        {
+          "trait": "head",
+          "value": "cop_cap"
+        },
+        {
+          "trait": "head",
+          "value": "cosmic_bandana"
+        },
+        {
+          "trait": "head",
+          "value": "duck"
+        },
+        {
+          "trait": "head",
+          "value": "duct-taped_banana"
+        },
+        {
+          "trait": "head",
+          "value": "fast_food_worker_-_red"
+        },
+        {
+          "trait": "head",
+          "value": "fast_food_worker_cap_-_black"
+        },
+        {
+          "trait": "head",
+          "value": "fiery_fringe"
+        },
+        {
+          "trait": "head",
+          "value": "fuego"
+        },
+        {
+          "trait": "head",
+          "value": "green_baseball_cap"
+        },
+        {
+          "trait": "head",
+          "value": "headband"
+        },
+        {
+          "trait": "head",
+          "value": "long_hair_-_black"
+        },
+        {
+          "trait": "head",
+          "value": "long_hair_-_blonde"
+        },
+        {
+          "trait": "head",
+          "value": "mohawk"
+        },
+        {
+          "trait": "head",
+          "value": "mullet"
+        },
+        {
+          "trait": "head",
+          "value": "planthead"
+        },
+        {
+          "trait": "head",
+          "value": "red_baseball_cap"
+        },
+        {
+          "trait": "head",
+          "value": "safety_helmet"
+        },
+        {
+          "trait": "head",
+          "value": "satan_horn"
+        },
+        {
+          "trait": "head",
+          "value": "shadow_crown"
+        },
+        {
+          "trait": "head",
+          "value": "shithead"
+        },
+        {
+          "trait": "head",
+          "value": "side_part"
+        },
+        {
+          "trait": "head",
+          "value": "stellar_strip_bandana"
+        },
+        {
+          "trait": "head",
+          "value": "straw_hat"
+        },
+        {
+          "trait": "head",
+          "value": "textured_quiff"
+        },
+        {
+          "trait": "head",
+          "value": "the_trump"
+        },
+        {
+          "trait": "head",
+          "value": "traffic_cone"
+        }
+      ]
+    },
+    {
+      "trait": "body",
+      "value": "pinkguy",
+      "exclude_with": [
+        {
+          "trait": "head",
+          "value": "afro"
+        },
+        {
+          "trait": "head",
+          "value": "comb-over"
+        },
+        {
+          "trait": "head",
+          "value": "fiery_fringe"
+        },
+        {
+          "trait": "head",
+          "value": "long_hair_-_black"
+        },
+        {
+          "trait": "head",
+          "value": "long_hair_-_blonde"
+        },
+        {
+          "trait": "head",
+          "value": "shadow_crown"
+        },
+        {
+          "trait": "head",
+          "value": "side_part"
+        },
+        {
+          "trait": "head",
+          "value": "textured_quiff"
+        },
+        {
+          "trait": "head",
+          "value": "the_trump"
+        },
+        {
+          "trait": "head",
+          "value": "mullet"
+        },
+        {
+          "trait": "head",
+          "value": "mohawk"
+        }
+      ]
+    },
+    {
+      "trait": "body",
+      "value": "ninja",
+      "exclude_with": [
+        {
+          "trait": "head",
+          "value": "the_trump"
+        },
+        {
+          "trait": "head",
+          "value": "textured_quiff"
+        },
+        {
+          "trait": "head",
+          "value": "side_part"
+        },
+        {
+          "trait": "head",
+          "value": "shadow_crown"
+        },
+        {
+          "trait": "head",
+          "value": "mohawk"
+        },
+        {
+          "trait": "head",
+          "value": "long_hair_-_blonde"
+        },
+        {
+          "trait": "head",
+          "value": "mullet"
+        },
+        {
+          "trait": "head",
+          "value": "long_hair_-_black"
+        },
+        {
+          "trait": "head",
+          "value": "fiery_fringe"
+        },
+        {
+          "trait": "head",
+          "value": "comb-over"
+        },
+        {
+          "trait": "head",
+          "value": "afro"
+        }
+      ]
+    },
+    {
+      "trait": "body",
+      "value": "monkie",
+      "exclude_with": [
+        {
+          "trait": "head",
+          "value": "the_trump"
+        },
+        {
+          "trait": "head",
+          "value": "textured_quiff"
+        },
+        {
+          "trait": "head",
+          "value": "side_part"
+        },
+        {
+          "trait": "head",
+          "value": "shadow_crown"
+        },
+        {
+          "trait": "head",
+          "value": "mullet"
+        },
+        {
+          "trait": "head",
+          "value": "mohawk"
+        },
+        {
+          "trait": "head",
+          "value": "long_hair_-_blonde"
+        },
+        {
+          "trait": "head",
+          "value": "long_hair_-_black"
+        },
+        {
+          "trait": "head",
+          "value": "fiery_fringe"
+        },
+        {
+          "trait": "head",
+          "value": "comb-over"
+        },
+        {
+          "trait": "head",
+          "value": "afro"
+        }
+      ]
+    },
+    {
+      "trait": "body",
+      "value": "fish_suit",
+      "exclude_with": [
+        {
+          "trait": "head",
+          "value": "afro"
+        },
+        {
+          "trait": "head",
+          "value": "angel"
+        },
+        {
+          "trait": "head",
+          "value": "antenna"
+        },
+        {
+          "trait": "head",
+          "value": "arabian_scarf"
+        },
+        {
+          "trait": "head",
+          "value": "blue_checkmark"
+        },
+        {
+          "trait": "head",
+          "value": "broccoli"
+        },
+        {
+          "trait": "head",
+          "value": "comb-over"
+        },
+        {
+          "trait": "head",
+          "value": "cop_cap"
+        },
+        {
+          "trait": "head",
+          "value": "cosmic_bandana"
+        },
+        {
+          "trait": "head",
+          "value": "duck"
+        },
+        {
+          "trait": "head",
+          "value": "duct-taped_banana"
+        },
+        {
+          "trait": "head",
+          "value": "fast_food_worker_-_red"
+        },
+        {
+          "trait": "head",
+          "value": "fast_food_worker_cap_-_black"
+        },
+        {
+          "trait": "head",
+          "value": "fiery_fringe"
+        },
+        {
+          "trait": "head",
+          "value": "fuego"
+        },
+        {
+          "trait": "head",
+          "value": "green_baseball_cap"
+        },
+        {
+          "trait": "head",
+          "value": "headband"
+        },
+        {
+          "trait": "head",
+          "value": "long_hair_-_black"
+        },
+        {
+          "trait": "head",
+          "value": "long_hair_-_blonde"
+        },
+        {
+          "trait": "head",
+          "value": "mohawk"
+        },
+        {
+          "trait": "head",
+          "value": "mullet"
+        },
+        {
+          "trait": "head",
+          "value": "planthead"
+        },
+        {
+          "trait": "head",
+          "value": "red_baseball_cap"
+        },
+        {
+          "trait": "head",
+          "value": "safety_helmet"
+        },
+        {
+          "trait": "head",
+          "value": "satan_horn"
+        },
+        {
+          "trait": "head",
+          "value": "shadow_crown"
+        },
+        {
+          "trait": "head",
+          "value": "shithead"
+        },
+        {
+          "trait": "head",
+          "value": "side_part"
+        },
+        {
+          "trait": "head",
+          "value": "stellar_strip_bandana"
+        },
+        {
+          "trait": "head",
+          "value": "straw_hat"
+        },
+        {
+          "trait": "head",
+          "value": "textured_quiff"
+        },
+        {
+          "trait": "head",
+          "value": "the_trump"
+        },
+        {
+          "trait": "head",
+          "value": "traffic_cone"
+        }
+      ]
+    },
+    {
+      "trait": "body",
+      "value": "niqab",
+      "exclude_with": [
+        {
+          "trait": "head",
+          "value": "afro"
+        },
+        {
+          "trait": "head",
+          "value": "arabian_scarf"
+        },
+        {
+          "trait": "head",
+          "value": "broccoli"
+        },
+        {
+          "trait": "head",
+          "value": "comb-over"
+        },
+        {
+          "trait": "head",
+          "value": "cop_cap"
+        },
+        {
+          "trait": "head",
+          "value": "cosmic_bandana"
+        },
+        {
+          "trait": "head",
+          "value": "duct-taped_banana"
+        },
+        {
+          "trait": "head",
+          "value": "fast_food_worker_-_red"
+        },
+        {
+          "trait": "head",
+          "value": "fast_food_worker_cap_-_black"
+        },
+        {
+          "trait": "head",
+          "value": "fiery_fringe"
+        },
+        {
+          "trait": "head",
+          "value": "fuego"
+        },
+        {
+          "trait": "head",
+          "value": "green_baseball_cap"
+        },
+        {
+          "trait": "head",
+          "value": "headband"
+        },
+        {
+          "trait": "head",
+          "value": "long_hair_-_black"
+        },
+        {
+          "trait": "head",
+          "value": "long_hair_-_blonde"
+        },
+        {
+          "trait": "head",
+          "value": "mohawk"
+        },
+        {
+          "trait": "head",
+          "value": "mullet"
+        },
+        {
+          "trait": "head",
+          "value": "planthead"
+        },
+        {
+          "trait": "head",
+          "value": "red_baseball_cap"
+        },
+        {
+          "trait": "head",
+          "value": "safety_helmet"
+        },
+        {
+          "trait": "head",
+          "value": "satan_horn"
+        },
+        {
+          "trait": "head",
+          "value": "shadow_crown"
+        },
+        {
+          "trait": "head",
+          "value": "shithead"
+        },
+        {
+          "trait": "head",
+          "value": "side_part"
+        },
+        {
+          "trait": "head",
+          "value": "stellar_strip_bandana"
+        },
+        {
+          "trait": "head",
+          "value": "straw_hat"
+        },
+        {
+          "trait": "head",
+          "value": "textured_quiff"
+        },
+        {
+          "trait": "head",
+          "value": "the_trump"
+        },
+        {
+          "trait": "head",
+          "value": "traffic_cone"
+        }
+      ]
+    }
+  ]
+}

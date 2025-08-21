@@ -1,0 +1,12 @@
+{
+  "name": "Holly Devil",
+  "token_id": 2888,
+  "edition": 12,
+  "image": "ipfs://CID/12.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Holly Devil"
+    }
+  ]
+}

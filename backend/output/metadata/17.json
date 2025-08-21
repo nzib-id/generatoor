@@ -1,0 +1,13 @@
+{
+  "name": "TMA",
+  "token_id": 45461,
+  "edition": 17,
+  "image": "ipfs://CID/17.gif",
+  "animation_url": "ipfs://CID/17.gif",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "TMA"
+    }
+  ]
+}

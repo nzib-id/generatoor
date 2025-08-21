@@ -1,0 +1,12 @@
+{
+  "name": "Captain Parodee",
+  "token_id": 40608,
+  "edition": 6,
+  "image": "ipfs://CID/6.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Captain Parodee"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Parodee #35",
+  "description": "The NFT collection that proves the world has officially lost it, so we might as well lose it together. Forget deep philosophies or overpromised roadmaps. Here, we’re just selling pixels, cheap jokes, and god-tier sarcasm.\n\nEach NFT in Parodee is a visual meme disguised as serious art, just enough to make people question if it’s a masterpiece or an expensive joke. If you’re looking for utility, congrats! this NFT has exactly one function, to remind you that you just spent money on a funny picture that (probably) does nothing.\n\nThis collection was born out of boredom, a pinch of social revenge, and a noble mission to prove that \"absurd sells\". So get your wallet ready, brace yourself, and welcome to Parodee",
+  "image": "ipfs://CID/35.png",
+  "token_id": 50960,
+  "edition": 35,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Purple"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Female - Simpson"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Polo Shirt - Light"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Long Hair - Black"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Neko"
+    }
+  ]
+}

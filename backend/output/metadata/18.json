@@ -1,0 +1,12 @@
+{
+  "name": "Pepe",
+  "token_id": 72386,
+  "edition": 18,
+  "image": "ipfs://CID/18.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Pepe"
+    }
+  ]
+}

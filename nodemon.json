@@ -1,0 +1,14 @@
+{
+  "watch": ["backend"],
+  "ext": "js,json",
+  "ignore": [
+    "frontend",
+    "backend/output",
+    "backend/utils",
+    "output/*",
+    "output/**",
+    "*.zip",
+    ".DS_Store"
+  ],
+  "exec": "node backend/server.js"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Master Yoga",
+  "token_id": 68748,
+  "edition": 13,
+  "image": "ipfs://CID/13.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Master Yoga"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Cheeses",
+  "token_id": 60257,
+  "edition": 7,
+  "image": "ipfs://CID/7.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Cheeses"
+    }
+  ]
+}

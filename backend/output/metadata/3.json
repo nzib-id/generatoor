@@ -1,0 +1,12 @@
+{
+  "name": "Bin Ladeen",
+  "token_id": 75686,
+  "edition": 3,
+  "image": "ipfs://CID/3.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Bin Ladeen"
+    }
+  ]
+}

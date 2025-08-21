@@ -1,0 +1,12 @@
+{
+  "name": "Gandhi",
+  "token_id": 76195,
+  "edition": 11,
+  "image": "ipfs://CID/11.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Gandhi"
+    }
+  ]
+}

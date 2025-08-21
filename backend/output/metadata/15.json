@@ -1,0 +1,12 @@
+{
+  "name": "Mr. Actually White",
+  "token_id": 60021,
+  "edition": 15,
+  "image": "ipfs://CID/15.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Mr. Actually White"
+    }
+  ]
+}

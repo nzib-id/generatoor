@@ -1,0 +1,12 @@
+{
+  "name": "Bing Chiling",
+  "token_id": 30058,
+  "edition": 4,
+  "image": "ipfs://CID/4.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Bing Chiling"
+    }
+  ]
+}

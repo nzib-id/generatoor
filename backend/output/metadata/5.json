@@ -1,0 +1,12 @@
+{
+  "name": "Black in Man",
+  "token_id": 85389,
+  "edition": 5,
+  "image": "ipfs://CID/5.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Black in Man"
+    }
+  ]
+}

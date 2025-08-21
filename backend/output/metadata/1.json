@@ -1,0 +1,12 @@
+{
+  "name": "Adorable Filter",
+  "token_id": 71440,
+  "edition": 1,
+  "image": "ipfs://CID/1.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Adorable Filter"
+    }
+  ]
+}
