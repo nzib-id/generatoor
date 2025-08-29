@@ -4,6 +4,7 @@ node_modules/
 .env
 .env.local
 .DS_Store
+.github
 
 # global
 .DS_Store
@@ -46,3 +47,4 @@ frontend/.env.local
 
 # === Optional: jaga folder kosong tetap ke-track
 **/.gitkeep
+
