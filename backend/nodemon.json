@@ -1,0 +1,17 @@
+{
+  "watch": ["."],
+  "ext": "js,json",
+  "ignore": [
+    "output/**",
+    "utils/traitrules.json",
+    "utils/layerorder.json",
+    "layers/**",
+    "custom/**",
+    "../frontend/**",
+    "../uploads/**",
+    "*.zip",
+    ".DS_Store",
+    "node_modules/**"
+  ],
+  "exec": "node server.js"
+}

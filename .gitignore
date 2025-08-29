@@ -1,0 +1,48 @@
+# === GLOBAL ===
+node_modules
+node_modules/
+.env
+.env.local
+.DS_Store
+
+# global
+.DS_Store
+Thumbs.db
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# env & secrets
+.env
+.env.*
+.env.local
+*.local
+
+# output / cache
+dist/
+build/
+.next/
+.out/
+.vercel/
+coverage/
+tmp/
+temp/
+.cache/
+
+# project-specific
+backend/output/
+backend/utils/customTokens.json
+frontend/.next/
+frontend/out/
+
+
+# === NEXT.JS ===
+frontend/.next/
+frontend/node_modules/
+frontend/.env.local
+
+# === Optional: jaga folder kosong tetap ke-track
+**/.gitkeep

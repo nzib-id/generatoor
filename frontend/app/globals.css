@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  --background: #262626;
+  --foreground: #eeeeee;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-mono: var(--font-courier), ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+  /* --font-sans: var(--font-bytesized); */
+  /* --font-mono: var(--font-bytesized); */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #262626;
+    --foreground: #eeeeee;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  @apply font-mono;
+}
+
+@layer utilities {
+  .no-spinner::-webkit-inner-spin-button,
+  .no-spinner::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .no-spinner {
+    -moz-appearance: textfield;
+  }
+}
+
+/* Tambahkan token font Tailwind yang menunjuk ke var dari next/font */
+/* @theme { */
+/* Opsi A: jadikan default monospace */
+/* --font-mono: var(--font-courier), ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace; */
+
+/* (Opsional) Opsi B: alias khusus 'font-courier' */
+/* --font-courier: var(--font-courier), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; */
+/* } */

@@ -1,0 +1,16 @@
+// utils/sanitize.ts
+
+export function sanitize(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[’‘“”]/g, "'") // smart quotes → normal quote
+    .replace(/[^a-z0-9 _'-]/g, "") // hapus karakter aneh
+    .replace(/\s+/g, "_") // spasi → _
+    .replace(/_+/g, "_"); // multiple _ jadi satu
+}
+
+export function beautify(name: string): string {
+  return sanitize(name)
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase()); // kapitalisasi tiap kata
+}

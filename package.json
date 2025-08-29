@@ -1,0 +1,29 @@
+{
+  "name": "parodee-nft-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon backend/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "canvas": "^3.1.2",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "fs-extra": "^11.3.0",
+    "multer": "^2.0.2",
+    "p-limit": "^6.2.0",
+    "path": "^0.12.7",
+    "sharp": "^0.34.3",
+    "unzipper": "^0.12.3",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

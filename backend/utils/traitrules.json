@@ -1,0 +1,588 @@
+{
+  "showTo": {
+    "head": {
+      "top_hat": ["male"],
+      "golden_skull_crown": ["male"],
+      "stewardess": ["male"],
+      "flat_cap": ["male"]
+    },
+    "outfit": {
+      "wing_of_azazel": ["male"],
+      "dark_armor": ["male"],
+      "cloak": ["male"]
+    },
+    "background": {
+      "abyss": ["male"],
+      "natura": ["female"]
+    }
+  },
+  "tags": {
+    "meta": {
+      "subtags": {
+        "eternal": [
+          {
+            "trait_type": "Face",
+            "value": "Eye of Ra"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Helix Nebula"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Bearded - Eternal",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Normal"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Golden Goddess Hair",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Medusa's Hair",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Golden Skull Crown"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Lowkey Helmet"
+          },
+          {
+            "trait_type": "Head",
+            "value": "God's Hair",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Golden Armor"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Dark Armor"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Goddess Dress",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Caishen",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "An",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Elf",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Abyss"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Heaven"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Natura"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Aphrodite",
+            "context": "Female"
+          }
+        ],
+        "noir": [
+          {
+            "trait_type": "Face",
+            "value": "90's shock"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Cigar"
+          },
+          {
+            "trait_type": "Face",
+            "value": "glasses"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Normal - Noir"
+          },
+          {
+            "trait_type": "Face",
+            "value": "lipstick",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Face",
+            "value": "stash",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Head",
+            "value": "marlyn monrow",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Head",
+            "value": "flat cap"
+          },
+          {
+            "trait_type": "Head",
+            "value": "mafia hat"
+          },
+          {
+            "trait_type": "Head",
+            "value": "stewardess"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Top Hat"
+          },
+          {
+            "trait_type": "Head",
+            "value": "co worker",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Head",
+            "value": "elvis parsley",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "cloack mw"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "coat m w"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "mw black and white"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "dress female",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "glamor dress",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "women suit",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "1.",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "bike jacket",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "chainz",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "jaz male",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "vest",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "with flower",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Noir",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Noir",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Noir"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Monocle"
+          }
+        ],
+        "hell": [
+          {
+            "trait_type": "Face",
+            "value": "Normal - Hell"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Slanderer"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Lust",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Veil",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Head of Valak"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Horn of Baphomet"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Lucifer Crown",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Greed",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Cloak"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Wing of Azazel"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "hypocrite",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Succubus",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Evil servant",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Corrupt",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Ragnarok",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Hell",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Hell",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Hell"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Noroi"
+          }
+        ],
+        "Geist": [
+          {
+            "trait_type": "Face",
+            "value": "holo"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Normal - Geist"
+          },
+          {
+            "trait_type": "Face",
+            "value": "skull"
+          },
+          {
+            "trait_type": "Head",
+            "value": "bandana"
+          },
+          {
+            "trait_type": "Head",
+            "value": "clown"
+          },
+          {
+            "trait_type": "Head",
+            "value": "cone"
+          },
+          {
+            "trait_type": "Head",
+            "value": "crown"
+          },
+          {
+            "trait_type": "Head",
+            "value": "hook"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Clothes"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "mummy wm"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "jacket"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "pirates crew"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "robe wm"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "scraf"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "skull"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "dress w",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "dress",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "women top",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "women cloth",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "monk",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Geist",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Geist",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Face",
+            "value": "clown face"
+          },
+          {
+            "trait_type": "Face",
+            "value": "eye patch"
+          },
+          {
+            "trait_type": "Face",
+            "value": "scream"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Nightmare"
+          },
+          {
+            "trait_type": "Head",
+            "value": "pirates"
+          }
+        ]
+      }
+    }
+  },
+  "global": {
+    "enableDynamicContext": true
+  },
+  "specific": [
+    {
+      "trait": "head",
+      "value": "lowkey_helmet",
+      "exclude_with": [
+        {
+          "trait": "face",
+          "value": "bearded_-_eternal",
+          "context": "male"
+        }
+      ]
+    }
+  ],
+  "weights": {
+    "Face__": {
+      "90's shock": 36,
+      "Cigar": 36,
+      "clown face": 36,
+      "Eye of Ra": 36,
+      "eye patch": 36,
+      "glasses": 36,
+      "Helix Nebula": 36,
+      "holo": 36,
+      "Monocle": 36,
+      "Normal - Geist": 37,
+      "Normal - Hell": 37,
+      "Normal - Noir": 37,
+      "Normal": 37,
+      "Noroi": 37,
+      "scream": 37,
+      "skull": 37,
+      "Slanderer": 37
+    },
+    "Face__Female": {
+      "lipstick": 620
+    },
+    "Face__Male": {
+      "Bearded - Eternal": 310,
+      "stash": 310
+    },
+    "Head__": {
+      "bandana": 44,
+      "clown": 44,
+      "cone": 44,
+      "crown": 44,
+      "flat cap": 44,
+      "Golden Skull Crown": 44,
+      "Head of Valak": 44,
+      "hook": 44,
+      "Horn of Baphomet": 44,
+      "Lowkey Helmet": 44,
+      "mafia hat": 44,
+      "pirates": 44,
+      "stewardess": 44,
+      "Top Hat": 44
+    },
+    "Head__Female": {
+      "Golden Goddess Hair": 124,
+      "Lust": 124,
+      "marlyn monrow": 124,
+      "Medusa's Hair": 124,
+      "Veil": 124
+    },
+    "Head__Male": {
+      "co worker": 124,
+      "elvis parsley": 124,
+      "God's Hair": 124,
+      "Greed": 124,
+      "Lucifer Crown": 124
+    },
+    "Outfit__": {
+      "cloack mw": 44,
+      "Cloak": 44,
+      "Clothes": 44,
+      "coat m w": 44,
+      "Dark Armor": 44,
+      "Golden Armor": 44,
+      "jacket": 44,
+      "mummy wm": 44,
+      "mw black and white": 44,
+      "pirates crew": 44,
+      "robe wm": 44,
+      "scraf": 44,
+      "Skull": 44,
+      "Wing of Azazel": 44
+    },
+    "Outfit__Female": {
+      "dress female": 56,
+      "dress w": 56,
+      "dress": 56,
+      "Evil servant": 56,
+      "glamor dress": 56,
+      "Goddess Dress": 56,
+      "hypocrite": 56,
+      "Succubus": 56,
+      "women cloth": 56,
+      "women suit": 56,
+      "women top": 56
+    },
+    "Outfit__Male": {
+      "1.": 68,
+      "bike jacket": 69,
+      "chainz": 69,
+      "Corrupt": 69,
+      "jaz male": 69,
+      "monk": 69,
+      "Ragnarok": 69,
+      "vest": 69,
+      "with flower": 69
+    },
+    "Skin__Female": {
+      "Aphrodite": 124,
+      "Elf": 124,
+      "Geist": 124,
+      "Hell": 124,
+      "Noir": 124
+    },
+    "Skin__Male": {
+      "An": 124,
+      "Caishen": 124,
+      "Geist": 124,
+      "Hell": 124,
+      "Noir": 124
+    },
+    "Background__": {
+      "Abyss": 103,
+      "Heaven": 103,
+      "Hell": 103,
+      "Natura": 103,
+      "Nightmare": 104,
+      "Noir": 104
+    }
+  }
+}

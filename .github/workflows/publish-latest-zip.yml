@@ -1,0 +1,27 @@
+name: publish-latest-zip
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-zip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # zip seluruh repo (kecuali yg ter-ignore)
+      - name: Create ZIP
+        run: |
+          zip -r parodee-latest.zip . -x "*.git*"
+
+      # buat/overwrite GitHub Release tag "latest"
+      - name: Create/Update latest release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest
+          files: parodee-latest.zip
+          body: "Automated build from main."
+          make_latest: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
