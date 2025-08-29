@@ -5,6 +5,7 @@ node_modules/
 .env.local
 .DS_Store
 .github
+.zip
 
 # global
 .DS_Store
