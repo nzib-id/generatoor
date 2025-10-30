@@ -8,34 +8,49 @@ export type TraitType = {
   context?: string;
 };
 
+// === FETCH TRAITS ===
 export async function fetchTraits(): Promise<TraitType[]> {
   const res = await fetch(`${baseUrl}/api/traits`);
-  const data = await res.json();
-  return data;
+  if (!res.ok) throw new Error("Failed to fetch traits");
+  return res.json();
 }
 
+// === FETCH TRAIT IMAGES ===
 export async function fetchTraitImages(trait: string): Promise<string[]> {
   const res = await fetch(`${baseUrl}/api/layers/${trait}`);
+  if (!res.ok) throw new Error("Failed to fetch trait images");
   const data: { files: string[] } = await res.json();
-  console.log(data.files);
   return data.files;
 }
 
+// === FETCH RULES (weights, showto, dll) ===
 export async function fetchRules() {
   const res = await fetch(`${baseUrl}/api/rules`);
-  return await res.json();
+  if (!res.ok) throw new Error("Failed to fetch rules");
+  return res.json();
 }
 
-export async function saveRules(data: any) {
+// === SAVE RULES (BUENO STYLE) ===
+// Kirim langsung raw weights tanpa konversi ke jumlah NFT.
+export async function saveRules(data: {
+  weights: Record<string, Record<string, number>>;
+}) {
   const res = await fetch(`${baseUrl}/api/save-rules`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-  return await res.json();
+
+  if (!res.ok) {
+    const errText = await res.text();
+    console.error("❌ saveRules failed:", errText);
+    throw new Error("Failed to save rules");
+  }
+
+  return res.json();
 }
 
-/** List custom tokens */
+/** === CUSTOM TOKENS API === */
 export async function listCustomTokens() {
   const res = await fetch(`${baseUrl}/api/custom-tokens`, {
     cache: "no-store",
@@ -44,21 +59,20 @@ export async function listCustomTokens() {
   return res.json();
 }
 
-/** Upload custom token (image + name + trait_type) */
 export async function uploadCustomToken({
   file,
   name,
   include = true,
-  trait_type, // ← optional
-  description, // ← optional
-  attributes, // ← optional
+  trait_type,
+  description,
+  attributes,
 }: {
   file: File;
   name: string;
   include?: boolean;
-  trait_type?: string; // ← jadikan optional
-  description?: string; // ← optional
-  attributes?: Array<{ trait_type: string; value: string }>; // ← optional
+  trait_type?: string;
+  description?: string;
+  attributes?: Array<{ trait_type: string; value: string }>;
 }) {
   const fd = new FormData();
   fd.append("image", file);
@@ -76,7 +90,6 @@ export async function uploadCustomToken({
   return res.json();
 }
 
-/** Toggle include / edit name/trait_type */
 export async function updateCustomToken(
   id: string,
   payload: Partial<{ include: boolean; name: string; trait_type: string }>
@@ -90,7 +103,6 @@ export async function updateCustomToken(
   return res.json();
 }
 
-/** Delete item */
 export async function deleteCustomToken(id: string) {
   const res = await fetch(`${baseUrl}/api/custom-tokens/${id}`, {
     method: "DELETE",

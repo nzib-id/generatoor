@@ -2,7 +2,7 @@
 
 import { rankTokens } from "@/lib/rarity";
 import { useRarityStore } from "@/lib/useRarityStore";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import toast from "react-hot-toast";
 import { useGeneratorState } from "@/lib/state";
 import AppImage from "@/components/ui/AppImage";
@@ -26,9 +26,9 @@ type Attribute = {
 
 type PreviewIndexItem = {
   token_id: number;
-  name: string | null;
-  image: string; // "/output/images/{id}.png" atau absolute
-  attributes: Attribute[]; // sudah dari backend
+  name?: string | null;
+  image?: string; // "/output/images/{id}.png" atau absolute
+  attributes?: Attribute[]; // sudah dari backend
   hasMetadata?: boolean;
 };
 
@@ -43,12 +43,14 @@ type UIItem = PreviewIndexItem & {
 async function fetchPreviewPage(
   apiBase: string,
   page = 1,
-  size = PAGE_SIZE
+  size = PAGE_SIZE,
+  signal?: AbortSignal
 ): Promise<PreviewIndexItem[]> {
   const r = await fetch(
     `${apiBase}/api/preview-index?page=${page}&size=${size}`,
     {
       cache: "no-store",
+      signal,
     }
   );
   if (!r.ok) throw new Error(`Failed /api/preview-index p=${page}`);
@@ -56,23 +58,24 @@ async function fetchPreviewPage(
   return (data.items || []) as PreviewIndexItem[];
 }
 
-// Tambahkan di dalam file (di luar component OK)
-async function fetchAllPreview(apiBase: string, size = PAGE_SIZE) {
-  const all: { token_id: number | string; attributes: Attribute[] }[] = [];
+// Fetch all pages (returns full PreviewIndexItem[])
+async function fetchAllPreview(
+  apiBase: string,
+  size = PAGE_SIZE,
+  signal?: AbortSignal
+): Promise<PreviewIndexItem[]> {
+  const all: PreviewIndexItem[] = [];
   let page = 1;
-  // loop sampai dapat < size
-  // NOTE: jangan pakai Promise.all biar santai ke server
-  // (lo bisa parallel kalau mau)
   for (;;) {
     const r = await fetch(
       `${apiBase}/api/preview-index?page=${page}&size=${size}`,
-      { cache: "no-store" }
+      { cache: "no-store", signal }
     );
     if (!r.ok) throw new Error(`Failed /api/preview-index p=${page}`);
     const data = await r.json();
     const items: PreviewIndexItem[] = (data.items || []) as PreviewIndexItem[];
     for (const it of items) {
-      all.push({ token_id: it.token_id, attributes: it.attributes || [] });
+      all.push(it);
     }
     if (items.length < size) break;
     page++;
@@ -84,7 +87,7 @@ async function fetchAllPreview(apiBase: string, size = PAGE_SIZE) {
    Component
 ========================= */
 export default function PreviewPage() {
-  // di dalam component:
+  // store
   const setRanking = useRarityStore((s) => s.setRanking);
 
   // generate
@@ -101,45 +104,6 @@ export default function PreviewPage() {
     Record<string, Record<string, number>>
   >({});
 
-  // di dalam component:
-  async function buildRankingAll() {
-    try {
-      if (!baseUrl) return;
-      // coba restore cache dulu
-      const saved = localStorage.getItem("rarity_rank_v1");
-      const savedTotal = localStorage.getItem("rarity_total_v1");
-      if (saved && savedTotal) {
-        const entries = JSON.parse(saved) as [
-          string | number,
-          { rank: number; score: number }
-        ][];
-        const map = new Map(entries);
-        setRanking(map, Number(savedTotal));
-        // lanjutkan silently: refresh cache di belakang (opsional)
-      }
-
-      const all = await fetchAllPreview(baseUrl, PAGE_SIZE);
-      if (!all.length) return;
-      const { rankById, total } = rankTokens(all);
-
-      // simpan ke store + cache
-      setRanking(rankById, total);
-      try {
-        const compact = Array.from(rankById.entries());
-        localStorage.setItem("rarity_rank_v1", JSON.stringify(compact));
-        localStorage.setItem("rarity_total_v1", String(total));
-      } catch {}
-    } catch (e) {
-      // cukup silent/log; jangan ganggu UI
-      console.warn("[rarity] build failed:", e);
-    }
-  }
-
-  // pagination
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-  const [loadingPage, setLoadingPage] = useState(false);
-
   // ui states
   const [rounded, setRounded] = useState(false);
   const [previewTs, setPreviewTs] = useState(Date.now()); // bust cache
@@ -149,6 +113,9 @@ export default function PreviewPage() {
   const [traitFilters, setTraitFilters] = useState<Record<string, string>>({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedToken, setSelectedToken] = useState<TokenDetail | null>(null);
+
+  // loading all pages indicator
+  const [isLoadingAll, setIsLoadingAll] = useState(false);
 
   const loadedPagesRef = useRef<Set<number>>(new Set());
 
@@ -166,7 +133,7 @@ export default function PreviewPage() {
         .toLowerCase()
         .trim()
         .replace(/\s+/g, "_")
-        .replace(/[^a-z0-9_\/-]/g, "");
+        .replace(/[^a-z0-9_\/\-]/g, "");
 
     let total = 0;
 
@@ -233,24 +200,125 @@ export default function PreviewPage() {
   // fetch weights (non-blocking)
   useEffect(() => {
     fetch("/api/trait-weights")
-      .then((r) => r.json())
+      .then((r) => {
+        if (!r.ok) throw new Error("Failed to load trait weights");
+        return r.json();
+      })
       .then((data) => setTraitWeightMap(data || {}))
       .catch(() => setTraitWeightMap({}));
   }, []);
 
-  // initial load + whenever generation stops → reset pagination and load first page
+  /* ========== Ranking builder (stable) ========== */
+  const buildRankingAll = useCallback(
+    async (signal?: AbortSignal) => {
+      try {
+        if (!baseUrl) return;
+        const saved = localStorage.getItem("rarity_rank_v1");
+        const savedTotal = localStorage.getItem("rarity_total_v1");
+        if (saved && savedTotal) {
+          try {
+            const entries = JSON.parse(saved) as [
+              string | number,
+              { rank: number; score: number }
+            ][];
+            const map = new Map(entries);
+            setRanking(map, Number(savedTotal));
+          } catch {
+            // ignore corrupted cache
+          }
+        }
+
+        const all = await fetchAllPreview(baseUrl, PAGE_SIZE, signal);
+        if (!all.length) return;
+        // Convert for rankTokens: rankTokens expects items = [{token_id, attributes}]
+        const minimal = all.map((it) => ({
+          token_id: it.token_id,
+          attributes: it.attributes || [],
+        }));
+        const { rankById, total } = rankTokens(minimal);
+
+        setRanking(rankById, total);
+        try {
+          const compact = Array.from(rankById.entries());
+          localStorage.setItem("rarity_rank_v1", JSON.stringify(compact));
+          localStorage.setItem("rarity_total_v1", String(total));
+        } catch {}
+      } catch (e) {
+        if ((e as any)?.name === "AbortError") return;
+        console.warn("[rarity] build failed:", e);
+      }
+    },
+    [setRanking]
+  );
+
+  /* ========== Load ALL pages (chunked) ========== */
+  const loadAllPages = useCallback(
+    async (signal?: AbortSignal) => {
+      if (!baseUrl) return;
+      setIsLoadingAll(true);
+      try {
+        const all = await fetchAllPreview(baseUrl, PAGE_SIZE, signal);
+        if (!all || !all.length) {
+          setItems([]);
+          return;
+        }
+
+        // convert to UIItem but push to state in chunks to avoid main-thread freeze
+        const chunkSize = 50; // safer default
+        const mappedAll: UIItem[] = all.map((it) => ({
+          token_id: Number(it.token_id),
+          name: (it as any).name ?? null,
+          image:
+            (it as any).image ??
+            `${baseUrl}/output/images/${
+              (it as any).token_id || it.token_id
+            }.png`,
+          attributes: it.attributes || [],
+          hasMetadata: (it as any).hasMetadata,
+          edition: Number(it.token_id),
+          rarity: getImageRarity(it.attributes || [], traitWeightMap),
+        }));
+
+        // clear previous and then add chunks
+        setItems([]);
+        for (let i = 0; i < mappedAll.length; i += chunkSize) {
+          const chunk = mappedAll.slice(i, i + chunkSize);
+          setItems((prev) => {
+            return [...prev, ...chunk];
+          });
+          // yield to event loop so UI remains responsive
+          // eslint-disable-next-line no-await-in-loop
+          await new Promise((res) => setTimeout(res, 0));
+          if (signal?.aborted) break;
+        }
+      } catch (err) {
+        if ((err as any)?.name === "AbortError") {
+          // expected on unmount/cancel
+          return;
+        }
+        console.warn("loadAllPages error", err);
+        toast.error("Failed to load previews");
+      } finally {
+        setIsLoadingAll(false);
+      }
+    },
+    [traitWeightMap]
+  );
+
+  // initial load + whenever generation stops → reset and load ALL pages
   useEffect(() => {
     if (!baseUrl) return;
     if (progress.isGenerating) return;
 
     setItems([]);
-    setPage(1);
-    setHasMore(true);
     loadedPagesRef.current.clear();
-    void loadPage(1);
-    void buildRankingAll();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [progress.isGenerating, traitWeightMap]);
+
+    const ac = new AbortController();
+    void loadAllPages(ac.signal);
+    void buildRankingAll(ac.signal);
+
+    return () => ac.abort();
+  }, [progress.isGenerating, traitWeightMap, loadAllPages, buildRankingAll]);
 
   // recompute rarity when weights change (without refetch)
   useEffect(() => {
@@ -267,9 +335,13 @@ export default function PreviewPage() {
   // poll progress while generating
   useEffect(() => {
     if (!progress.isGenerating) return;
+    const ac = new AbortController();
     const interval = setInterval(async () => {
       try {
-        const r = await fetch(`${baseUrl}/api/generate-progress`);
+        const r = await fetch(`${baseUrl}/api/generate-progress`, {
+          signal: ac.signal,
+        });
+        if (!r.ok) throw new Error("progress fetch failed");
         const p = await r.json();
         setProgress(p);
 
@@ -277,53 +349,22 @@ export default function PreviewPage() {
           clearInterval(interval);
           toast.success("Generated!");
           setPreviewTs(Date.now());
-          // trigger initial load effect above
           setTimeout(
             () => setProgress((prev) => ({ ...prev, isGenerating: false })),
             0
           );
         }
-      } catch {
+      } catch (e) {
         clearInterval(interval);
+        if ((e as any)?.name === "AbortError") return;
         toast.error("Error during generate");
       }
     }, 1000);
-    return () => clearInterval(interval);
+    return () => {
+      ac.abort();
+      clearInterval(interval);
+    };
   }, [progress.isGenerating]);
-
-  /* ========== Pagination loader ========== */
-  async function loadPage(p: number) {
-    if (!baseUrl) return;
-    // sudah pernah dimuat? skip
-    if (loadedPagesRef.current.has(p)) return;
-    // sedang loading atau sudah habis? skip
-    if (loadingPage || !hasMore) return;
-
-    setLoadingPage(true);
-    try {
-      const batch = await fetchPreviewPage(baseUrl, p, PAGE_SIZE);
-
-      // tandai page ini sudah dimuat
-      loadedPagesRef.current.add(p);
-
-      const mapped: UIItem[] = batch.map((it) => ({
-        ...it,
-        edition: it.token_id,
-        rarity: getImageRarity(it.attributes, traitWeightMap),
-      }));
-
-      // tambahkan hasil tanpa duplikasi id (jaga-jaga)
-      setItems((prev) => {
-        const seen = new Set(prev.map((x) => String(x.token_id)));
-        const unique = mapped.filter((x) => !seen.has(String(x.token_id)));
-        return [...prev, ...unique];
-      });
-
-      if (batch.length < PAGE_SIZE) setHasMore(false);
-    } finally {
-      setLoadingPage(false);
-    }
-  }
 
   /* ========== Handlers ========== */
   const handleGenerate = async () => {
@@ -331,8 +372,6 @@ export default function PreviewPage() {
     if (!baseUrl) return toast.error("API URL not set");
 
     setItems([]);
-    setPage(1);
-    setHasMore(true);
     setProgress({ total: amount, done: 0, isGenerating: true });
 
     try {
@@ -368,11 +407,13 @@ export default function PreviewPage() {
       setProgress(pData);
       setPreviewTs(Date.now());
 
-      // reset list and reload first page
+      // reload all pages
       setItems([]);
-      setPage(1);
-      setHasMore(true);
-      void loadPage(1);
+      loadedPagesRef.current.clear();
+      const ac = new AbortController();
+      void loadAllPages(ac.signal);
+      // also refresh ranking in background
+      void buildRankingAll(ac.signal);
     } catch {
       toast.error("Failed to stop");
     }
@@ -411,7 +452,9 @@ export default function PreviewPage() {
     if (value && value !== "") {
       previewItems = previewItems.filter((item) =>
         item.attributes?.some(
-          (attr) => attr.trait_type === trait_type && attr.value === value
+          (attr) =>
+            String(attr.trait_type) === trait_type &&
+            String(attr.value) === String(value)
         )
       );
     }
@@ -474,6 +517,7 @@ export default function PreviewPage() {
   return (
     <main className="text-white relative">
       <h1 className="text-8xl mb-8">Preview</h1>
+
       <div className="flex md:flex-row flex-col gap-10 text-3xl mb-10">
         <div>
           <label htmlFor="amount" className="mr-2">
@@ -484,7 +528,6 @@ export default function PreviewPage() {
             type="number"
             value={amount || ""}
             onChange={(e) => {
-              // parse ke number biar otomatis drop leading zero
               const newAmount = parseInt(e.target.value || "0", 10);
 
               setAmount(newAmount);
@@ -521,18 +564,20 @@ export default function PreviewPage() {
           Download ZIP
         </button>
 
-        <div className="flex flex-1 items-center justify-end gap-2 *:hover:-translate-y-1 *:active:translate-y-0">
+        <div className="flex flex-1 items-center justify-end gap-2">
           <button
             onClick={() => setRounded(false)}
             className={`border-3 w-5 h-5 cursor-pointer ${
               rounded ? "bg-none" : "bg-white"
             }`}
+            aria-label="Square thumbnails"
           />
           <button
             onClick={() => setRounded(true)}
             className={`border-3 w-5 h-5 rounded-full cursor-pointer ${
               rounded ? "bg-white" : "bg-none"
             }`}
+            aria-label="Rounded thumbnails"
           />
           <button
             onClick={() => setShowFilterSort((v) => !v)}
@@ -540,6 +585,7 @@ export default function PreviewPage() {
               showFilterSort ? "" : "rotate-180"
             }`}
             title="Sort & Filter"
+            aria-label="Open sort and filter"
           >
             <svg
               viewBox="0 0 32 32"
@@ -632,6 +678,13 @@ export default function PreviewPage() {
         </div>
       )}
 
+      {/* loading all indicator */}
+      {isLoadingAll && (
+        <div className="mt-6 text-lg opacity-80">
+          Loading preview... ({items.length} items loaded)
+        </div>
+      )}
+
       {/* grid */}
       {progress.isGenerating ? (
         <div className="mt-16 text-xl opacity-70">
@@ -676,21 +729,7 @@ export default function PreviewPage() {
             })}
           </div>
 
-          {hasMore && (
-            <div className="flex justify-center my-8">
-              <button
-                onClick={() => {
-                  const next = page + 1;
-                  setPage(next);
-                  void loadPage(next);
-                }}
-                disabled={loadingPage}
-                className="border px-4 py-2"
-              >
-                {loadingPage ? "Loading..." : "Load more"}
-              </button>
-            </div>
-          )}
+          {/* 'Load more' removed — preview shows all items (chunked load in background) */}
         </>
       )}
 

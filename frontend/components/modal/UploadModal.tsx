@@ -295,6 +295,33 @@ export default function UploadModal() {
     setIsUploading(true);
     setProgress(0);
 
+    // ---- helper hashing aman (optional, skip kalau nggak ada WebCrypto)
+    async function sha1File(file: File): Promise<string | null> {
+      const subtle = (globalThis as any)?.crypto?.subtle;
+      if (!subtle) return null; // fallback: skip hashing on unsupported env
+      const buf = await file.arrayBuffer();
+      const hash = await subtle.digest("SHA-1", buf);
+      return Array.from(new Uint8Array(hash))
+        .map((b) => b.toString(16).padStart(2, "0"))
+        .join("");
+    }
+
+    // ...tepat sebelum: const formData = new FormData();
+    const preHashes: Record<string, string> = {};
+    const canHash = !!(globalThis as any)?.crypto?.subtle;
+
+    if (canHash) {
+      for (const u of upFiles) {
+        const h = await sha1File(u.file);
+        if (h) preHashes[u.rel] = h;
+      }
+      if (Object.keys(preHashes).length) console.table(preHashes);
+    } else {
+      console.warn("[upload] WebCrypto tidak tersedia; skip pre-hash");
+    }
+
+    console.table(preHashes); // <== lihat "Skin/Male/Noir.png" vs "Skin/Female/Noir.png"
+
     const formData = new FormData();
     upFiles.forEach((u, idx) => {
       // Wajib: pakai fieldname "files:<rel>" persis seperti backend baca

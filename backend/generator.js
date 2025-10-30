@@ -3,6 +3,7 @@ const path = require("path");
 const { createCanvas, loadImage } = require("canvas");
 const sharp = require("sharp");
 const pLimitMod = require("p-limit");
+require("dotenv").config();
 
 const { beautify, sanitize } = require("./utils/sanitize");
 
@@ -143,32 +144,29 @@ async function loadValidTraits(
   contextTags = [],
   traitRules,
   selfHasContext = false,
-  fileIndex // Map<trait, items[]>
+  fileIndex
 ) {
   const weightsMap = traitRules?.weights || {};
   const showToMap = traitRules?.showTo || {};
   const items = (fileIndex && fileIndex.get(trait)) || [];
 
   const enableCtx = !!traitRules?.global?.enableDynamicContext;
-
-  // Normalisasi contextTags sekali agar perbandingan konsisten
   const ctxSet = new Set(
     Array.isArray(contextTags) ? contextTags.map(sanitize) : []
   );
 
-  return items
+  // === Build options & ambil raw weights ===
+  const options = items
     .map((it) => {
       const valueSan = it.value;
       const contextSan = it.context;
-
-      const weightKey = getWeightKey(trait, contextSan);
-      const weightByValue = weightsMap[weightKey] || {};
-      const weight = (weightByValue[valueSan] ?? 1) || 1;
-
+      const weightKey = `${sanitize(trait)}__${sanitize(contextSan || "")}`;
+      const bucket = weightsMap[weightKey] || {};
+      const rawWeight = Number(bucket[valueSan] ?? 100);
       return {
         filename: path.basename(it.path),
         value: valueSan,
-        weight,
+        weight: isNaN(rawWeight) ? 100 : Math.max(rawWeight, 0),
         path: it.path,
         context: contextSan,
         contextRaw: it.contextRaw,
@@ -176,49 +174,64 @@ async function loadValidTraits(
       };
     })
     .filter((opt) => {
+      // === Filter SHOWTO ===
+      const traitKey = sanitize(trait);
+      const showToForTrait = showToMap?.[traitKey] || {};
+      const allowedForValue =
+        showToForTrait[sanitize(opt.value)] ||
+        showToForTrait[sanitize(opt.context)];
+      const hasShowTo =
+        Array.isArray(allowedForValue) && allowedForValue.length > 0;
+
+      if (hasShowTo) {
+        if (ctxSet.size === 0) return false;
+        return allowedForValue.some((ctx) => ctxSet.has(sanitize(ctx)));
+      }
+
+      // === Context dynamic ===
+      if (!enableCtx) return true;
       const optSegments = String(opt.context || "")
         .split("/")
         .map(sanitize)
         .filter(Boolean);
-
-      // --- SHOWTO: sanitize key trait & value saat lookup
-      const traitKey = sanitize(trait);
-      const showToForTrait = showToMap?.[traitKey] || {};
-      const allowedForValue = showToForTrait[sanitize(opt.value)];
-      const hasShowTo =
-        Array.isArray(allowedForValue) && allowedForValue.length > 0;
-
-      // === SHOWTO SELALU KUAT ===
-      if (hasShowTo) {
-        if (ctxSet.size === 0) return false;
-        // minimal ada 1 ctx yang cocok
-        return allowedForValue.some((ctx) => ctxSet.has(sanitize(ctx)));
-      }
-
-      // === Context dynamic (hanya aktif saat enableCtx==true)
-      if (!enableCtx) return true;
-
       const hasCtxFilter = ctxSet.size > 0;
-
-      // 2) Kalau trait sumber context, izinkan opsi ber-context saat contextTags belum kebentuk
       if (selfHasContext && optSegments.length > 0 && !hasCtxFilter) {
         return true;
       }
-
-      // 3) Normal (mode context ON)
       if (!hasCtxFilter) return true;
       return (
         optSegments.length === 0 || optSegments.every((seg) => ctxSet.has(seg))
       );
     });
+
+  // === Normalisasi weights (ala Bueno) ===
+  const total = options.reduce((sum, o) => sum + (o.weight || 0), 0);
+  const normalized =
+    total > 0
+      ? options.map((o) => ({ ...o, normalizedWeight: o.weight / total }))
+      : options.map((o) => ({ ...o, normalizedWeight: 1 / options.length }));
+
+  // === Debug logger
+  if (process.env.DEBUG_RARITY === "true" && normalized.length > 0) {
+    console.log(`🎯 [RARITY] Trait: ${trait}`);
+    normalized.forEach((o) => {
+      const pct = ((o.normalizedWeight || 0) * 100).toFixed(2);
+      console.log(`   - ${o.value} (${o.context || "noctx"}): ${pct}%`);
+    });
+  }
+
+  return normalized;
 }
 
 function weightedRandom(options) {
-  const total = options.reduce((sum, o) => sum + (o.weight || 1), 0);
+  const total = options.reduce(
+    (sum, o) => sum + (o.normalizedWeight ?? o.weight ?? 1),
+    0
+  );
   if (total <= 0) return options[Math.floor(Math.random() * options.length)];
   let rand = Math.random() * total;
   for (const option of options) {
-    rand -= option.weight || 1;
+    rand -= option.normalizedWeight ?? option.weight ?? 1;
     if (rand <= 0) return option;
   }
   return options[options.length - 1];
@@ -398,21 +411,183 @@ function filterByTagRules(options, traitSan, tagIndex, activeTagChoice) {
 // === DUPLICATE PREVENTION =====================================
 // Build key stabil dari pilihan trait (urut sesuai drawOrder), contoh:
 // "Background=Hell|Skin=Hell - Male|Outfit=Ragnarok|Head=Greed|Face=Slanderer"
-function buildComboKey(chosenByTrait, drawOrder) {
+function buildComboKey(chosenByTrait, drawOrder, skipSet = new Set()) {
   const parts = [];
   for (const t of drawOrder) {
     const tSan = sanitize(t);
+    if (skipSet.has(tSan)) continue; // trait di-skip karena contextOverrides
+
     const picked = chosenByTrait[tSan];
-    if (!picked) {
-      parts.push(`${tSan}=`);
-      continue;
-    }
-    const v = picked.context
-      ? `${sanitize(picked.context)} - ${sanitize(picked.value)}`
-      : sanitize(picked.value);
-    parts.push(`${tSan}=${v}`);
+    if (!picked) continue;
+
+    const ctx = picked.context ? sanitize(picked.context) : "";
+    const val = sanitize(picked.value);
+    // include context biar kombinasi fullbody beda gak dianggap dupe
+    parts.push(`${tSan}=${ctx ? `${ctx}-` : ""}${val}`);
   }
   return parts.join("|");
+}
+
+// ===== NEW: Context matcher (prefix/subset) + global active context =====
+function ctxMatch(ruleCtx, actualCtx, activeCtxSet) {
+  const r = String(ruleCtx || "")
+    .trim()
+    .toLowerCase();
+  const a = String(actualCtx || "")
+    .trim()
+    .toLowerCase();
+
+  if (!r) return true; // rule global → selalu cocok
+
+  // 1) match ke context milik item (prefix OK)
+  if (a && (a === r || a.startsWith(r + "/") || a.startsWith(r + "_")))
+    return true;
+
+  // 2) match ke context global aktif (misal activeCtxSet = [ 'male', 'male/noir' ])
+  if (activeCtxSet) {
+    for (const tag of activeCtxSet) {
+      const t = String(tag || "").toLowerCase();
+      if (t === r || t.startsWith(r + "/") || t.startsWith(r + "_"))
+        return true;
+    }
+  }
+
+  return false;
+}
+
+// ===== Global post-selection validator =====
+function parseAttrPair(attr) {
+  const t = sanitize(attr.trait_type);
+  const raw = String(attr.value ?? "");
+  const parts = raw.split(" - ");
+  if (parts.length >= 2) {
+    return { trait: t, value: parts.slice(1).join(" - "), context: parts[0] };
+  }
+  return { trait: t, value: raw, context: "" };
+}
+function normRuleNode(obj) {
+  return {
+    trait: sanitize(obj.trait),
+    value: sanitize(obj.value),
+    context: sanitize(obj.context || ""),
+  };
+}
+/** Return true kalau ADA pelanggaran rules untuk set attributes final */
+function violatesAnyRuleGlobal(rulesList, selectedAttributes, contextTags) {
+  const activeCtxSet = new Set(contextTags || []);
+  const attrs = selectedAttributes.map(parseAttrPair);
+
+  for (const ruleRaw of rulesList || []) {
+    const rule = normRuleNode(ruleRaw);
+
+    // A. rule sebagai primary (ketika item primary ada di attrs)
+    for (const cand of attrs) {
+      const samePrimary =
+        cand.trait === rule.trait &&
+        cand.value === rule.value &&
+        ctxMatch(rule.context, cand.context, activeCtxSet);
+
+      if (samePrimary) {
+        if (Array.isArray(ruleRaw.exclude_with)) {
+          for (const exRaw of ruleRaw.exclude_with) {
+            const ex = normRuleNode(exRaw);
+            const clash = attrs.some(
+              (a) =>
+                a.trait === ex.trait &&
+                a.value === ex.value &&
+                ctxMatch(ex.context, a.context, activeCtxSet)
+            );
+            if (clash) return true;
+          }
+        }
+        if (
+          Array.isArray(ruleRaw.require_with) &&
+          ruleRaw.require_with.length
+        ) {
+          const ok = ruleRaw.require_with.some((reqRaw) => {
+            const req = normRuleNode(reqRaw);
+            return attrs.some(
+              (a) =>
+                a.trait === req.trait &&
+                a.value === req.value &&
+                ctxMatch(req.context, a.context, activeCtxSet)
+            );
+          });
+          if (!ok) return true;
+        }
+      }
+    }
+
+    // B. rule sebagai “pasangan lain” (arah kebalikan)
+    const matched = attrs.find(
+      (a) =>
+        a.trait === rule.trait &&
+        a.value === rule.value &&
+        ctxMatch(rule.context, a.context, activeCtxSet)
+    );
+    if (matched) {
+      if (Array.isArray(ruleRaw.exclude_with)) {
+        const clash2 = ruleRaw.exclude_with.some((exRaw) => {
+          const ex = normRuleNode(exRaw);
+          return attrs.some(
+            (a) =>
+              a.trait === ex.trait &&
+              a.value === ex.value &&
+              ctxMatch(ex.context, a.context, activeCtxSet)
+          );
+        });
+        if (clash2) return true;
+      }
+      if (Array.isArray(ruleRaw.require_with) && ruleRaw.require_with.length) {
+        const ok2 = ruleRaw.require_with.some((reqRaw) => {
+          const req = normRuleNode(reqRaw);
+          return attrs.some(
+            (a) =>
+              a.trait === req.trait &&
+              a.value === req.value &&
+              ctxMatch(req.context, a.context, activeCtxSet)
+          );
+        });
+        if (!ok2) return true;
+      }
+    }
+  }
+  return false;
+}
+
+// ===== NEW: applyContextOverrides - build skip set from chosen traits =====
+function applyContextOverrides(traitRules, chosenByTrait) {
+  const skip = new Set();
+  if (!traitRules || !traitRules.contextOverrides) return skip;
+
+  const mapping = traitRules.contextOverrides || {};
+  // normalize mapping keys to lowercase for matching
+  const mapKeys = Object.keys(mapping || {});
+
+  for (const [tName, picked] of Object.entries(chosenByTrait || {})) {
+    if (!picked) continue;
+    const ctxRaw = picked.contextRaw || picked.context || "";
+    const normalizedCtx = String(ctxRaw || "").toLowerCase();
+    if (!normalizedCtx) continue;
+
+    // check each mapping key (case-insensitive)
+    for (const key of mapKeys) {
+      if (!key) continue;
+      const k = String(key || "").toLowerCase();
+      // allow match either equal or prefix (so "fullbody" and "fullbody/noir" match)
+      if (
+        normalizedCtx === k ||
+        normalizedCtx.startsWith(k + "/") ||
+        normalizedCtx.startsWith(k + "_")
+      ) {
+        const toExclude = mapping[key] || [];
+        for (const tr of toExclude) {
+          if (tr) skip.add(sanitize(tr));
+        }
+      }
+    }
+  }
+  return skip;
 }
 
 // 🚀 Generate 1 NFT (TOKEN_ID ONLY)
@@ -446,9 +621,83 @@ async function generateOneNFT(
   const drawOrder = readDrawOrder().slice().reverse();
 
   // siapkan urutan seleksi (tetap)
-  const rulesList = Array.isArray(traitRules?.specific)
+  // === Normalisasi & expand rules ===
+  function normalizeRuleSet(rules) {
+    const out = [];
+    for (const rule of rules || []) {
+      const base = {
+        trait: sanitize(rule.trait),
+        value: sanitize(rule.value),
+        context: String(rule.context || "")
+          .trim()
+          .toLowerCase(),
+        exclude_with: (rule.exclude_with || []).map((ex) => ({
+          trait: sanitize(ex.trait),
+          value: sanitize(ex.value),
+          context: String(ex.context || "")
+            .trim()
+            .toLowerCase(),
+        })),
+        require_with: (rule.require_with || []).map((req) => ({
+          trait: sanitize(req.trait),
+          value: sanitize(req.value),
+          context: String(req.context || "")
+            .trim()
+            .toLowerCase(),
+        })),
+      };
+      out.push(base);
+    }
+    return out;
+  }
+
+  // === Expand ke dua arah biar mutual exclusion ===
+  function expandBidirectional(rules) {
+    const expanded = [];
+    for (const rule of rules) {
+      expanded.push(rule);
+      if (Array.isArray(rule.exclude_with)) {
+        for (const ex of rule.exclude_with) {
+          expanded.push({
+            trait: ex.trait,
+            value: ex.value,
+            context: ex.context,
+            exclude_with: [
+              {
+                trait: rule.trait,
+                value: rule.value,
+                context: rule.context,
+              },
+            ],
+          });
+        }
+      }
+      if (Array.isArray(rule.require_with)) {
+        for (const req of rule.require_with) {
+          expanded.push({
+            trait: req.trait,
+            value: req.value,
+            context: req.context,
+            require_with: [
+              {
+                trait: rule.trait,
+                value: rule.value,
+                context: rule.context,
+              },
+            ],
+          });
+        }
+      }
+    }
+    return expanded;
+  }
+
+  // === Terapkan normalisasi & expand ke rulesList ===
+  let rulesList = Array.isArray(traitRules?.specific)
     ? traitRules.specific
     : [];
+  rulesList = normalizeRuleSet(rulesList);
+  rulesList = expandBidirectional(rulesList);
 
   let selectOrder = [];
   let traitsThatHaveContext = new Set();
@@ -478,12 +727,15 @@ async function generateOneNFT(
   for (let attempt = 1; attempt <= maxRerolls; attempt++) {
     await checkpoint();
 
+    // RESET semua state agar reroll bener-bener fresh
     ctx.clearRect(0, 0, BASE_W, BASE_H);
-
     const attributes = [];
     const chosenByTrait = {};
     const selectedAttributes = [];
-    const activeTagChoice = {}; // { [group]: "SubtagTerpilih" }
+    const activeTagChoice = {};
+    contextTags = Array.isArray(opts.contextTagsBase)
+      ? [...opts.contextTagsBase]
+      : [];
 
     function parseAttr(a) {
       const t = sanitize(a.trait_type);
@@ -503,7 +755,9 @@ async function generateOneNFT(
       return {
         trait: sanitize(obj.trait),
         value: sanitize(obj.value),
-        context: sanitize(obj.context || ""),
+        context: String(obj.context || "")
+          .trim()
+          .toLowerCase(),
       };
     }
 
@@ -529,6 +783,7 @@ async function generateOneNFT(
         tagIndex,
         activeTagChoice
       );
+
       const optionsToUse = tagFiltered.length > 0 ? tagFiltered : validOptions;
 
       await checkpoint();
@@ -545,9 +800,13 @@ async function generateOneNFT(
       let tries = 0;
       let picked = null;
 
-      while (tries < 10) {
+      // === Ditinggikan 10 -> 50 agar tidak cepat habis saat banyak rule blocking
+      while (tries < 50) {
         await checkpoint();
         const cand = weightedRandom(optionsToUse);
+        // di dalam while(tries < 50) sebelum const violates = rulesList.some(...)
+        const activeCtxSet = new Set(contextTags || []);
+
         tries++;
 
         const candNorm = {
@@ -556,29 +815,34 @@ async function generateOneNFT(
           context: sanitize(cand.context || ""),
         };
 
+        let violatedRule = null;
         const violates = rulesList.some((ruleRaw) => {
           const rule = normRule(ruleRaw);
           const samePrimary =
             rule.trait === candNorm.trait &&
             rule.value === candNorm.value &&
-            (!rule.context || rule.context === candNorm.context);
+            ctxMatch(rule.context, candNorm.context, activeCtxSet);
 
           // exclude_with (arah 1)
           if (samePrimary && Array.isArray(ruleRaw.exclude_with)) {
-            return ruleRaw.exclude_with.some((exRaw) => {
+            const hit = ruleRaw.exclude_with.some((exRaw) => {
               const ex = normRule(exRaw);
               return selectedAttributes.some((a) => {
                 const A = parseAttr(a);
                 return (
                   A.trait === ex.trait &&
                   A.value === ex.value &&
-                  (!ex.context || ex.context === A.context)
+                  ctxMatch(ex.context, A.context, activeCtxSet)
                 );
               });
             });
+            if (hit) {
+              violatedRule = ruleRaw;
+              return true;
+            }
           }
 
-          // require_with (arah 1) — kuat & adil
+          // require_with (arah 1)
           if (samePrimary && Array.isArray(ruleRaw.require_with)) {
             const conflict = ruleRaw.require_with.some((reqRaw) => {
               const req = normRule(reqRaw);
@@ -586,7 +850,8 @@ async function generateOneNFT(
                 const A = parseAttr(a);
                 return (
                   A.trait === req.trait &&
-                  (!req.context || req.context === A.context)
+                  ctxMatch(req.context, A.context, activeCtxSet)
+                  // was: (!req.context || req.context === A.context)
                 );
               });
               if (!found) return false;
@@ -602,7 +867,8 @@ async function generateOneNFT(
             return (
               A.trait === rule.trait &&
               A.value === rule.value &&
-              (!rule.context || rule.context === A.context)
+              ctxMatch(rule.context, A.context, activeCtxSet)
+              // was: (!rule.context || rule.context === A.context)
             );
           });
           if (matchedAttr && Array.isArray(ruleRaw.exclude_with)) {
@@ -611,7 +877,8 @@ async function generateOneNFT(
               return (
                 ex.trait === candNorm.trait &&
                 ex.value === candNorm.value &&
-                (!ex.context || ex.context === candNorm.context)
+                ctxMatch(ex.context, candNorm.context, activeCtxSet)
+                // was: (!ex.context || ex.context === candNorm.context)
               );
             });
           }
@@ -623,7 +890,8 @@ async function generateOneNFT(
               return (
                 req.trait === candNorm.trait &&
                 req.value === candNorm.value &&
-                (!req.context || req.context === candNorm.context)
+                ctxMatch(req.context, candNorm.context, activeCtxSet)
+                // was: (!req.context || req.context === candNorm.context)
               );
             });
             if (!allowed) return true;
@@ -632,7 +900,14 @@ async function generateOneNFT(
           return false;
         });
 
-        if (violates) continue;
+        if (violates) {
+          console.log("🚫 Rule triggered:", {
+            candidate: candNorm,
+            rule: violatedRule,
+            activeContexts: Array.from(activeCtxSet),
+          });
+          continue;
+        }
 
         picked = cand;
 
@@ -679,8 +954,27 @@ async function generateOneNFT(
       }
     } // end for selectOrder
 
+    // === GLOBAL VALIDATION: pastikan kombinasi final gak melanggar rules ===
+    if (violatesAnyRuleGlobal(rulesList, selectedAttributes, contextTags)) {
+      // kombinasi invalid → reroll attempt berikutnya
+      contextTags = Array.isArray(opts.contextTagsBase)
+        ? [...opts.contextTagsBase]
+        : [];
+      continue;
+    }
+
+    // === PASS 2: gambar & tulis file (sama seperti sebelumnya)
+    // --- NEW: setelah final selection, terapkan contextOverrides untuk skip trait lain
+    const skipSet = applyContextOverrides(traitRules, chosenByTrait);
+    if (skipSet.size > 0) {
+      console.log(
+        "[CTX-OVERRIDE] skipping traits due to context override:",
+        Array.from(skipSet)
+      );
+    }
+
     // === NEW: cek duplicate sebelum gambar
-    const comboKey = buildComboKey(chosenByTrait, drawOrder);
+    const comboKey = buildComboKey(chosenByTrait, drawOrder, skipSet);
     if (seenCombos && seenCombos.has(comboKey)) {
       // dupe → reroll kalau masih ada jatah
       if (attempt === maxRerolls) {
@@ -699,10 +993,53 @@ async function generateOneNFT(
     }
     if (seenCombos) seenCombos.add(comboKey);
 
-    // === PASS 2: gambar & tulis file (sama seperti sebelumnya)
+    // If chosen trait itself should be drawn on top (cover), move it to end of drawOrder
+    // Pindahkan trait override (fullbody) ke posisi parent (outfit)
+    for (const [traitSan, picked] of Object.entries(chosenByTrait)) {
+      if (!picked) continue;
+      const ctxRaw = picked.contextRaw || picked.context || "";
+      const normalizedCtx = ctxRaw.toLowerCase();
+      if (!normalizedCtx) continue;
+
+      const mapping = traitRules?.contextOverrides || {};
+      for (const key of Object.keys(mapping)) {
+        const k = key.toLowerCase();
+        if (
+          normalizedCtx === k ||
+          normalizedCtx.startsWith(k + "/") ||
+          normalizedCtx.startsWith(k + "_")
+        ) {
+          const targets = mapping[key];
+          for (const parentTrait of targets) {
+            const parentIdx = drawOrder.findIndex(
+              (d) => sanitize(d) === sanitize(parentTrait)
+            );
+            const selfIdx = drawOrder.findIndex(
+              (d) => sanitize(d) === sanitize(traitSan)
+            );
+            if (parentIdx !== -1 && selfIdx !== -1 && selfIdx > parentIdx) {
+              drawOrder.splice(selfIdx, 1);
+              drawOrder.splice(parentIdx + 1, 0, traitSan);
+              console.log(
+                `[DRAW-INHERIT] moved ${traitSan} right after ${parentTrait}`
+              );
+            }
+          }
+        }
+      }
+    }
+
     for (const trait of drawOrder) {
       await checkpoint();
       const traitSan = sanitize(trait);
+      if (skipSet.has(traitSan)) {
+        // skip this trait entirely (do not draw nor include attribute)
+        console.log(
+          `[DRAW-SKIP] skipping trait ${trait} due to context override`
+        );
+        continue;
+      }
+
       const picked = chosenByTrait[traitSan];
       if (!picked) continue;
 
@@ -755,21 +1092,27 @@ async function generateOneNFT(
       const t = capitalize(attr.trait_type);
       const { ctx, val } = splitCtxVal(attr.value);
 
-      // Trait asli tanpa prefix context
+      // 🧠 kalau context-nya "fullbody", jangan tulis context-nya ke metadata
+      // cuma tulis value-nya aja, biar tampil kayak Outfit: Banana
+      if (ctx.toLowerCase() === "fullbody") {
+        metaAttrs.push({
+          trait_type: t,
+          value: beautify(val),
+        });
+        continue; // skip nambah Type untuk fullbody
+      }
+
+      // Normal behaviour untuk context lain
       metaAttrs.push({
         trait_type: t,
         value: beautify(val),
       });
 
-      // Tambah Context (sekali per nilai unik)
       if (ctx) {
         const prettyCtx = beautify(ctx.replace(/\//g, " / "));
         if (!seenContexts.has(prettyCtx)) {
           seenContexts.add(prettyCtx);
-          metaAttrs.push({
-            trait_type: "Type",
-            value: prettyCtx,
-          });
+          metaAttrs.push({ trait_type: "Type", value: prettyCtx });
         }
       }
     }
@@ -840,7 +1183,13 @@ async function generateAllNFT(startId, count, contextTags = [], opts = {}) {
             "utf-8"
           )
         )
-      : {};
+      : JSON.parse(
+          fs.readFileSync(
+            path.join(__dirname, "utils", "traitrules.json"),
+            "utf-8"
+          )
+        ); // fallback ensure
+
     const fileIndex = await buildFileIndex(
       path.join(__dirname, "layers"),
       drawOrder

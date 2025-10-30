@@ -36,8 +36,8 @@ function getUniqueTraits(traits: Trait[]): Trait[] {
 function IconAction({
   onClick,
   label,
-  colorClass, // contoh: "border-red-500"
-  children, // SVG icon
+  colorClass,
+  children,
 }: {
   onClick: () => void;
   label: string;
@@ -52,8 +52,6 @@ function IconAction({
       className={`group relative grid place-items-center w-12 h-12 ${colorClass} rounded-full active:translate-y-1 border-4 hover:-translate-y-1 cursor-pointer focus:outline-none`}
     >
       {children}
-
-      {/* Tooltip */}
       <span
         className="pointer-events-none absolute -bottom-2 translate-y-full left-1/2 -translate-x-1/2
                    whitespace-nowrap rounded-md border-2 border-white/20 bg-[#262626] px-2 py-1
@@ -81,9 +79,14 @@ export default function SpecificRules({
   const [modalMode, setModalMode] = useState<"exclude" | "require" | "pair">(
     "exclude"
   );
+  const [editingRule, setEditingRule] = useState<SpecificRule | null>(null);
 
-  const openModal = (mode: "exclude" | "require" | "pair") => {
+  const openModal = (
+    mode: "exclude" | "require" | "pair",
+    rule?: SpecificRule
+  ) => {
     setModalMode(mode);
+    setEditingRule(rule || null);
     setShowModal(true);
   };
 
@@ -93,8 +96,40 @@ export default function SpecificRules({
       toast.success("Rule saved!");
       await fetchAll();
       setShowModal(false);
+      setEditingRule(null);
     } catch (err) {
       toast.error("Error Saving Rule");
+      console.error(err);
+    }
+  };
+
+  const handleEditSpecific = async (updatedRule: SpecificRule) => {
+    try {
+      const { trait, value, context } = updatedRule;
+      const res = await fetch(
+        `${baseUrl}/api/rules/specific/${encodeURIComponent(
+          trait
+        )}/${encodeURIComponent(value)}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            context,
+            add: {
+              exclude_with: updatedRule.exclude_with,
+              require_with: updatedRule.require_with,
+              always_with: updatedRule.always_with,
+            },
+          }),
+        }
+      );
+      if (!res.ok) throw new Error("Update failed");
+      toast.success("Rule updated!");
+      await fetchAll();
+      setShowModal(false);
+      setEditingRule(null);
+    } catch (err) {
+      toast.error("Error updating rule");
       console.error(err);
     }
   };
@@ -161,50 +196,43 @@ export default function SpecificRules({
 
   return (
     <section className="">
-      <div className="flex justify-between  mb-20">
-        <h3 className="font-semibold text-6xl ">Specific Rules</h3>
+      <div className="flex justify-between mb-20">
+        <h3 className="font-semibold text-6xl">Specific Rules</h3>
 
         <div className="flex items-center gap-3">
           <p className="text-white/50">Select rule:</p>
-
-          {/* Exclude / Doesn't mix */}
           <IconAction
             onClick={() => openModal("exclude")}
             label="Doesn't Mix With"
             colorClass="border-red-500"
           >
-            {/* Ban / block icon */}
             <Image
               src={"/exclude_with.svg"}
-              alt="always mix with"
+              alt="exclude"
               fill
               className="object-contain p-2"
             />
           </IconAction>
-          {/* Require / Only mix */}
           <IconAction
             onClick={() => openModal("require")}
             label="Only Mix With"
             colorClass="border-green-500"
           >
-            {/* Check circle */}
             <Image
               src={"/require_with.svg"}
-              alt="always with"
+              alt="require"
               fill
               className="object-contain p-2"
             />
           </IconAction>
-          {/* Pair / Always pair */}
           <IconAction
             onClick={() => openModal("pair")}
             label="Always Pair With"
             colorClass="border-blue-500"
           >
-            {/* Link / chain icon */}
             <Image
               src={"/always_with.svg"}
-              alt="always with"
+              alt="pair"
               fill
               className="object-contain p-2"
             />
@@ -232,12 +260,13 @@ export default function SpecificRules({
                 </strong>
               </div>
 
+              {/* original exclude_with / require_with / always_with blocks (unchanged) */}
               {rule.exclude_with && (
                 <div className="text-sm items-center grid flex-wrap gap-3">
                   <span className="text-2xl text-red-500">
                     Doesn’t Mix With:
                   </span>
-                  <div className="flex gap-6 md:gap-5 max-h-90 overflow-auto p-5 ">
+                  <div className="flex gap-6 md:gap-5 max-h-90 overflow-auto p-5">
                     {rule.exclude_with.map((r, i) => (
                       <div
                         key={i}
@@ -253,14 +282,13 @@ export default function SpecificRules({
                             pixelated
                           />
                         </div>
-
                         <div className="grid grid-col w-full gap-2 text-center">
                           {r.context && (
-                            <span className=" bg-[#444] text-xs uppercase tracking-wide">
+                            <span className="bg-[#444] text-xs uppercase tracking-wide">
                               {r.context}
                             </span>
                           )}
-                          <span className="text-sm font-semibold tracking-wide ">
+                          <span className="text-sm font-semibold tracking-wide">
                             {beautify(r.value)}
                           </span>
                         </div>
@@ -269,7 +297,6 @@ export default function SpecificRules({
                   </div>
                 </div>
               )}
-
               {rule.require_with && (
                 <div className="text-xl flex flex-wrap items-center gap-3">
                   <span className="text-2xl text-green-500">
@@ -296,7 +323,6 @@ export default function SpecificRules({
                   </div>
                 </div>
               )}
-
               {rule.always_with && (
                 <div className="text-xl items-center flex flex-wrap gap-3">
                   <span className="text-2xl text-blue-500">
@@ -325,25 +351,53 @@ export default function SpecificRules({
               )}
             </div>
 
+            {/* ✏️ Edit */}
+            <button
+              onClick={() =>
+                openModal(
+                  rule.exclude_with
+                    ? "exclude"
+                    : rule.require_with
+                    ? "require"
+                    : "pair",
+                  rule
+                )
+              }
+              className="absolute top-6 right-16 cursor-pointer ml-4 w-5 h-5"
+              aria-label="Edit rule"
+              title="Edit rule"
+            >
+              <Image src={"/ui/pencil.svg"} alt="edit" fill />
+            </button>
+
+            {/* ❌ Delete */}
             <button
               onClick={() => handleDeleteSpecific(idx)}
               className="absolute top-6 right-6 cursor-pointer ml-4 w-5 h-5"
               aria-label="Delete rule"
               title="Delete rule"
             >
-              <Image src={"/ui/x.svg"} alt="delete" fill></Image>
+              <Image src={"/ui/x.svg"} alt="delete" fill />
             </button>
           </li>
         ))}
       </ul>
 
-      {/* Modal */}
       <RuleModal
         isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        onSave={handleAddSpecific}
+        onClose={() => {
+          setShowModal(false);
+          setEditingRule(null);
+        }}
+        // 👇 cukup panggil fetchAll di sini, biar modal ngurus update-nya sendiri
+        onSave={async () => {
+          await fetchAll();
+          setShowModal(false);
+          setEditingRule(null);
+        }}
         traits={getUniqueTraits(Array.isArray(traits) ? traits : [])}
         mode={modalMode}
+        defaultRule={editingRule || undefined}
       />
     </section>
   );

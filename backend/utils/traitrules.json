@@ -1,111 +1,401 @@
 {
-  "showTo": {
-    "head": {
-      "top_hat": ["male"],
-      "golden_skull_crown": ["male"],
-      "stewardess": ["male"],
-      "flat_cap": ["male"]
+  "weights": {
+    "background__": {
+      "Abyss": 11,
+      "Apocalypse": 121,
+      "Blue Screen": 151,
+      "Cyberpunk": 100,
+      "Green": 151,
+      "Grey": 151,
+      "Heaven": 11,
+      "Hell": 100,
+      "Matrix": 100,
+      "Natura": 11,
+      "Night": 100,
+      "Noir": 100,
+      "Ocean": 136,
+      "Pink": 151,
+      "Red": 151,
+      "Sweet": 136,
+      "Yellow": 151
     },
+    "skin__male": {
+      "An": 11,
+      "Black": 151,
+      "Caishen": 11,
+      "Cyberpunk": 100,
+      "Geist": 100,
+      "Hell": 100,
+      "Noir": 100,
+      "White": 151,
+      "Yellow": 151,
+      "Zombie": 121
+    },
+    "skin__female": {
+      "Aphrodite": 11,
+      "Black": 151,
+      "Cyberpunk": 100,
+      "Elf": 11,
+      "Geist": 100,
+      "Hell": 100,
+      "Noir": 100,
+      "White": 151,
+      "Yellow": 151,
+      "Zombie": 121
+    },
+    "outfit__male": {
+      "1.": 100,
+      "All Cops Are Betting": 100,
+      "Android": 100,
+      "At the Barber": 100,
+      "Baggy Tee": 100,
+      "bike jacket": 100,
+      "Black Suit": 100,
+      "Bloody Intern": 100,
+      "Bloody Police": 100,
+      "Carpenter": 100,
+      "Carrier": 100,
+      "Caver": 100,
+      "chainz": 100,
+      "Chef": 100,
+      "Corrupt": 100,
+      "Crippled": 100,
+      "Dark Armor": 21,
+      "Denim": 100,
+      "Duck Float": 100,
+      "Golden Armor": 11,
+      "Hand of Steel": 100,
+      "jaz male": 100,
+      "Jersey - Red": 100,
+      "Jumper - Green": 100,
+      "Jumper - Pink": 100,
+      "Jumper - Purple": 100,
+      "Jumper - Red": 100,
+      "Jumper - Yellow": 100,
+      "Life Jacket": 100,
+      "M Suit": 100,
+      "monk": 100,
+      "Monkie": 100,
+      "Ninja": 100,
+      "Office Slaver": 100,
+      "Olympic": 100,
+      "Prisoner": 100,
+      "Puffer - Green": 100,
+      "Puffer - Purple": 100,
+      "Puffer - Red": 100,
+      "Puffer - Yellow": 100,
+      "Ragnarok": 100,
+      "Red Rider": 100,
+      "Riot Vest": 100,
+      "Safety Vest": 100,
+      "Scout": 100,
+      "Shopekeeper - Coffee": 100,
+      "Shopkeeper - Groceries": 100,
+      "Shopkeeper - Seafood": 100,
+      "Tee - Ducksie": 100,
+      "Tee - Hype Cult": 100,
+      "Track - Black": 100,
+      "Track - Mint": 100,
+      "Track - Red": 100,
+      "Turtleneck - Black": 100,
+      "Turtleneck - Grandma's Gift": 100,
+      "Turtleneck - Grey": 100,
+      "Vest - Army": 100,
+      "Vest - Black": 100,
+      "Vest - Pink": 100,
+      "Vest - Purple": 100,
+      "vest": 100,
+      "Windbreaker - Blue": 100,
+      "Windbreaker - Pink": 100,
+      "Windbreaker - Polkadot": 100,
+      "Windbreaker - Striped": 100,
+      "Windbreaker - Yellow": 100,
+      "with flower": 100,
+      "Worker": 100
+    },
+    "outfit__fullbody": {
+      "Banana": 100,
+      "Bear": 100,
+      "Chicken": 100,
+      "Fish": 100,
+      "Frog": 100,
+      "Gorilla": 100,
+      "Raincoat": 100
+    },
+    "outfit__female": {
+      "All Cops Are Betting": 100,
+      "Bloody Intern": 100,
+      "Bloody Police": 100,
+      "Cleopatra": 100,
+      "Cloak": 100,
+      "Crippled": 100,
+      "Denim": 100,
+      "dress female": 100,
+      "dress w": 100,
+      "dress": 100,
+      "Duck Float": 100,
+      "Evil servant": 100,
+      "glamor dress": 100,
+      "Goddess Dress": 11,
+      "hypocrite": 100,
+      "Jumper - Green": 100,
+      "Jumper - Pink": 100,
+      "Jumper - Purple": 100,
+      "Jumper - Red": 100,
+      "Jumper - Yellow": 100,
+      "Kawaii Student": 100,
+      "Kimono": 100,
+      "Life Jacket": 100,
+      "Maid": 100,
+      "Monkie": 100,
+      "Ninja": 100,
+      "Niqab": 100,
+      "Pink Dress": 100,
+      "Puffer - Green": 100,
+      "Puffer - Pink": 100,
+      "Puffer - Purple": 100,
+      "Puffer - Yellow": 100,
+      "Safety Vest": 100,
+      "Shopekeeper - Coffee": 100,
+      "Shopkeeper - Groceries": 100,
+      "Shopkeeper - Seafood": 100,
+      "Sleeveless Turtleneck - Black": 100,
+      "Sleeveless Turtleneck - Red": 100,
+      "Sport Bra": 100,
+      "Succubus": 100,
+      "Tee - Ducksie": 100,
+      "Tee - Hype Cult": 100,
+      "Track - Black": 100,
+      "Track - Mint": 100,
+      "Track - Red": 100,
+      "Tracker": 100,
+      "Turtleneck - Grandma's Gift": 100,
+      "Turtleneck - Grey": 100,
+      "Vest - Army": 100,
+      "Vest - Black": 100,
+      "Vest - Pink": 100,
+      "Vest - Purple": 100,
+      "W Suit": 100,
+      "Windbreaker - Blue": 100,
+      "Windbreaker - Pink": 100,
+      "Windbreaker - Polkadot": 100,
+      "Windbreaker - Striped": 100,
+      "Windbreaker - Yellow": 100,
+      "women cloth": 100,
+      "women suit": 100,
+      "women top": 100
+    },
+    "outfit__": {
+      "Bloody Duck Float": 100,
+      "cloack mw": 100,
+      "Clothes": 100,
+      "coat m w": 100,
+      "Cursed Hands": 100,
+      "Hell's Keeper": 100,
+      "jacket": 100,
+      "Jumpsuit": 100,
+      "mummy wm": 100,
+      "mw black and white": 100,
+      "pirates crew": 100,
+      "robe wm": 100,
+      "scraf": 100,
+      "Sinners": 100,
+      "Skull": 100,
+      "Wing of Azazel": 100
+    },
+    "head__male": {
+      "Baldness": 100,
+      "Bloody Police Cap": 100,
+      "Cowboy": 100,
+      "Elvis Parsley": 100,
+      "flat cap": 100,
+      "God's Hair": 11,
+      "Greed": 100,
+      "keanu reeves": 100,
+      "Lucifer Crown": 100,
+      "Mafia Hat": 100,
+      "Miner": 100,
+      "Olympic": 100,
+      "Pompadour - Black": 100,
+      "Pompadour - Blonde": 100,
+      "Quiff - Black": 100,
+      "Quiff - Red": 100,
+      "Quiff - Yellow": 100,
+      "Sleek Hair": 100,
+      "Slick Back - Black": 100,
+      "Slick Back - White": 100,
+      "Stewardess": 100,
+      "Top Hat": 100
+    },
+    "head__female": {
+      "Bloody Police Cap": 100,
+      "Cowboy": 100,
+      "Golden Goddess Hair": 11,
+      "Lust": 100,
+      "Mafia Hat": 100,
+      "Marlyn Moonrow": 100,
+      "Medusa's Hair": 100,
+      "Messy Girl Hair": 100,
+      "Sidepart - Black": 100,
+      "Sidepart - White": 100,
+      "Stewardess": 100,
+      "Veil": 100
+    },
+    "head__": {
+      "Afro": 100,
+      "Alopecia": 100,
+      "Bald": 100,
+      "Bandage": 100,
+      "Bandana Spirit": 100,
+      "Beanie - Black": 100,
+      "Beanie - Brown": 100,
+      "Beanie - Pink": 100,
+      "Beanie": 100,
+      "Blue Checkmark": 100,
+      "Bowlcut": 100,
+      "Brain": 100,
+      "Bucket Hat - Army": 100,
+      "Bucket Hat - Black": 100,
+      "Bucket Hat - Cream": 100,
+      "Bucket Hat - Purple": 100,
+      "Bucket Hat - White": 100,
+      "Bucket Hat - Yellow": 100,
+      "Bucket": 100,
+      "Cables": 100,
+      "Champion": 100,
+      "Chef": 100,
+      "Clown Spirit": 100,
+      "Comedian": 100,
+      "Comma - Black": 100,
+      "Comma - Pink": 100,
+      "Comma - White": 100,
+      "Comma - Yellow": 100,
+      "Cop Hat": 100,
+      "Cornrow with Bun": 100,
+      "Cornrow": 100,
+      "Crown Spirit": 100,
+      "Disco": 100,
+      "Frog": 100,
+      "Golden Checkmark": 100,
+      "Golden Skull Crown": 11,
+      "Habibi": 100,
+      "Head of Valak": 100,
+      "Headband": 100,
+      "Hook Spirit": 100,
+      "Horn of Baphomet": 100,
+      "Kamikaze": 100,
+      "Lil Chick": 100,
+      "Lowkey Helmet": 11,
+      "Magician": 100,
+      "Messy - White": 100,
+      "Mohawk - Green": 100,
+      "Mohawk - Purple": 100,
+      "Mohawk - Red": 100,
+      "Mohawk": 100,
+      "Mullet": 100,
+      "Number One Man": 100,
+      "Paper Boat": 100,
+      "Paper Face": 100,
+      "Pirate Spirit": 100,
+      "Plant": 100,
+      "Poo": 100,
+      "Spike - Blue": 100,
+      "Spike - Green": 100,
+      "Spike - Red": 100,
+      "Spike - RGB": 100,
+      "Spike - Yellow": 100,
+      "Sunny Side": 100,
+      "Traffic Cone Spirit": 100,
+      "Traffic Cone": 100,
+      "Trucker - Black": 100,
+      "Trucker - Brown": 100,
+      "Trucker - Green": 100,
+      "Trucker - Red": 100,
+      "Two Buns": 100,
+      "Arrow": 100
+    },
+    "face__male": {
+      "Airpod": 100,
+      "Bearded - Eternal": 11,
+      "Fullbeard": 100,
+      "Handlebar - Zombie": 100,
+      "Handlebar": 100,
+      "Horseshoe - Zombie": 100,
+      "Horseshoe": 100,
+      "Normal - Cyberpunk": 100,
+      "Normal - Eternal": 11,
+      "Normal - Geist": 100,
+      "Normal - Hell": 100,
+      "Normal - Noir": 100,
+      "Normal - Zombie": 100,
+      "Normal": 100,
+      "Stache": 100
+    },
+    "face__female": {
+      "Airpod": 100,
+      "Normal - Cyberpunk": 100,
+      "Normal - Eternal": 11,
+      "Normal - Geist": 100,
+      "Normal - Hell": 100,
+      "Normal - Noir": 100,
+      "Normal - Zombie": 100,
+      "Normal": 100
+    },
+    "face__": {
+      "90's shock": 100,
+      "Angry": 100,
+      "Black Eye Club": 100,
+      "Bloody Face": 100,
+      "Bloody Glasses": 100,
+      "Bloody Scuba": 100,
+      "Bored": 100,
+      "Breathoor": 100,
+      "Butcher": 100,
+      "Cigar": 100,
+      "Clown Face": 100,
+      "Cursed": 100,
+      "Cyclop": 100,
+      "Eye of Ra": 100,
+      "Eye Patch": 100,
+      "Glasses": 100,
+      "Helix Nebula": 11,
+      "Holo": 100,
+      "Lazerous": 100,
+      "Ligma": 100,
+      "Monocle": 100,
+      "Monoclereon": 100,
+      "Nerd": 100,
+      "Noroi": 100,
+      "Retarded": 100,
+      "Ripped face": 100,
+      "Scream": 100,
+      "Skull": 100,
+      "Slanderer": 100,
+      "Swag": 100,
+      "Thermal Goggles": 100,
+      "Visor": 100,
+      "Yawn": 100
+    }
+  },
+  "showTo": {
     "outfit": {
-      "wing_of_azazel": ["male"],
-      "dark_armor": ["male"],
-      "cloak": ["male"]
+      "fullbody": [
+        "male",
+        "female"
+      ]
     },
     "background": {
-      "abyss": ["male"],
-      "natura": ["female"]
+      "abyss": [
+        "male"
+      ],
+      "natura": [
+        "female"
+      ]
     }
   },
   "tags": {
     "meta": {
       "subtags": {
-        "eternal": [
-          {
-            "trait_type": "Face",
-            "value": "Eye of Ra"
-          },
-          {
-            "trait_type": "Face",
-            "value": "Helix Nebula"
-          },
-          {
-            "trait_type": "Face",
-            "value": "Bearded - Eternal",
-            "context": "Male"
-          },
-          {
-            "trait_type": "Face",
-            "value": "Normal"
-          },
-          {
-            "trait_type": "Head",
-            "value": "Golden Goddess Hair",
-            "context": "Female"
-          },
-          {
-            "trait_type": "Head",
-            "value": "Medusa's Hair",
-            "context": "Female"
-          },
-          {
-            "trait_type": "Head",
-            "value": "Golden Skull Crown"
-          },
-          {
-            "trait_type": "Head",
-            "value": "Lowkey Helmet"
-          },
-          {
-            "trait_type": "Head",
-            "value": "God's Hair",
-            "context": "Male"
-          },
-          {
-            "trait_type": "Outfit",
-            "value": "Golden Armor"
-          },
-          {
-            "trait_type": "Outfit",
-            "value": "Dark Armor"
-          },
-          {
-            "trait_type": "Outfit",
-            "value": "Goddess Dress",
-            "context": "Female"
-          },
-          {
-            "trait_type": "Skin",
-            "value": "Caishen",
-            "context": "Male"
-          },
-          {
-            "trait_type": "Skin",
-            "value": "An",
-            "context": "Male"
-          },
-          {
-            "trait_type": "Skin",
-            "value": "Elf",
-            "context": "Female"
-          },
-          {
-            "trait_type": "Background",
-            "value": "Abyss"
-          },
-          {
-            "trait_type": "Background",
-            "value": "Heaven"
-          },
-          {
-            "trait_type": "Background",
-            "value": "Natura"
-          },
-          {
-            "trait_type": "Skin",
-            "value": "Aphrodite",
-            "context": "Female"
-          }
-        ],
         "noir": [
           {
             "trait_type": "Face",
@@ -120,25 +410,6 @@
             "value": "glasses"
           },
           {
-            "trait_type": "Face",
-            "value": "Normal - Noir"
-          },
-          {
-            "trait_type": "Face",
-            "value": "lipstick",
-            "context": "Female"
-          },
-          {
-            "trait_type": "Face",
-            "value": "stash",
-            "context": "Male"
-          },
-          {
-            "trait_type": "Head",
-            "value": "marlyn monrow",
-            "context": "Female"
-          },
-          {
             "trait_type": "Head",
             "value": "flat cap"
           },
@@ -148,16 +419,7 @@
           },
           {
             "trait_type": "Head",
-            "value": "stewardess"
-          },
-          {
-            "trait_type": "Head",
             "value": "Top Hat"
-          },
-          {
-            "trait_type": "Head",
-            "value": "co worker",
-            "context": "Male"
           },
           {
             "trait_type": "Head",
@@ -238,13 +500,49 @@
           {
             "trait_type": "Face",
             "value": "Monocle"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Stache",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Marlyn Moonrow",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Mafia Hat",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Sleek Hair",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Normal - Noir",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Normal - Noir",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Stewardess",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Stewardess",
+            "context": "Male"
           }
         ],
         "hell": [
-          {
-            "trait_type": "Face",
-            "value": "Normal - Hell"
-          },
           {
             "trait_type": "Face",
             "value": "Slanderer"
@@ -276,10 +574,6 @@
             "trait_type": "Head",
             "value": "Greed",
             "context": "Male"
-          },
-          {
-            "trait_type": "Outfit",
-            "value": "Cloak"
           },
           {
             "trait_type": "Outfit",
@@ -327,48 +621,247 @@
           {
             "trait_type": "Face",
             "value": "Noroi"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Normal - Hell",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Normal - Hell",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Sinners"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Hell's Keeper"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Cursed"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Butcher"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Cursed Hands"
+          }
+        ],
+        "Zombie": [
+          {
+            "trait_type": "Face",
+            "value": "Ripped face"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Bloody Scuba"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Bloody Glasses"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Bloody Face"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Bucket"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Bandage"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Traffic Cone"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Miner",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Messy Girl Hair",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Cowboy",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Cleopatra",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Kimono",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Maid",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Pink Dress",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Bloody Intern",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Carpenter",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Olympic",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Prisoner",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Riot Vest",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Worker",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Zombie",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Zombie",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Apocalypse"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Olympic"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Disco"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Bloody Police",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Bloody Police",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Bloody Police Cap"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Normal - Zombie",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Normal - Zombie",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Handlebar - Zombie",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Horseshoe - Zombie",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Bloody Duck Float"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Safety Vest",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Safety Vest",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Arrow"
           }
         ],
         "Geist": [
           {
             "trait_type": "Face",
-            "value": "holo"
+            "value": "Holo"
           },
           {
             "trait_type": "Face",
-            "value": "Normal - Geist"
+            "value": "Skull"
           },
           {
             "trait_type": "Face",
-            "value": "skull"
+            "value": "Scream"
           },
           {
             "trait_type": "Head",
-            "value": "bandana"
+            "value": "Bandana Spirit"
           },
           {
             "trait_type": "Head",
-            "value": "clown"
+            "value": "Clown Spirit"
           },
           {
             "trait_type": "Head",
-            "value": "cone"
+            "value": "Crown Spirit"
           },
           {
             "trait_type": "Head",
-            "value": "crown"
+            "value": "Hook Spirit"
           },
           {
             "trait_type": "Head",
-            "value": "hook"
+            "value": "Pirate Spirit"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Traffic Cone Spirit"
           },
           {
             "trait_type": "Outfit",
             "value": "Clothes"
-          },
-          {
-            "trait_type": "Outfit",
-            "value": "mummy wm"
           },
           {
             "trait_type": "Outfit",
@@ -388,7 +881,7 @@
           },
           {
             "trait_type": "Outfit",
-            "value": "skull"
+            "value": "Skull"
           },
           {
             "trait_type": "Outfit",
@@ -402,12 +895,12 @@
           },
           {
             "trait_type": "Outfit",
-            "value": "women top",
+            "value": "women cloth",
             "context": "Female"
           },
           {
             "trait_type": "Outfit",
-            "value": "women cloth",
+            "value": "women top",
             "context": "Female"
           },
           {
@@ -426,163 +919,1255 @@
             "context": "Male"
           },
           {
-            "trait_type": "Face",
-            "value": "clown face"
-          },
-          {
-            "trait_type": "Face",
-            "value": "eye patch"
-          },
-          {
-            "trait_type": "Face",
-            "value": "scream"
-          },
-          {
             "trait_type": "Background",
-            "value": "Nightmare"
+            "value": "Night"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "mummy wm"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Clown Face"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Eye Patch"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Normal - Geist",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Normal - Geist",
+            "context": "Male"
+          }
+        ],
+        "Eternal": [
+          {
+            "trait_type": "Face",
+            "value": "Eye of Ra"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Helix Nebula"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Bearded - Eternal",
+            "context": "Male"
           },
           {
             "trait_type": "Head",
-            "value": "pirates"
+            "value": "Golden Skull Crown"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Lowkey Helmet"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Golden Goddess Hair",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Medusa's Hair",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Head",
+            "value": "God's Hair",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Dark Armor"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Golden Armor"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Goddess Dress",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Aphrodite",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Elf",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "An",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Caishen",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Abyss"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Heaven"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Natura"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Normal - Eternal",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Normal - Eternal",
+            "context": "Male"
+          }
+        ],
+        "Cyberpunk": [
+          {
+            "trait_type": "Face",
+            "value": "Breathoor"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Monoclereon"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Lazerous"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Swag"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Thermal Goggles"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Visor"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Normal - Cyberpunk",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Normal - Cyberpunk",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Cables"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Beanie"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Champion"
+          },
+          {
+            "trait_type": "Head",
+            "value": "keanu reeves"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Mohawk"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Cornrow"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Android"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Black Suit"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Carrier"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Caver"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Hand of Steel"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Jumpsuit"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Scout"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Red Rider"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Tracker"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "W Suit",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "M Suit",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Cyberpunk",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Cyberpunk",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Cyberpunk"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Cyclop"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Matrix"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Brain"
+          }
+        ],
+        "Parodist": [
+          {
+            "trait_type": "Face",
+            "value": "Black Eye Club"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Nerd"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Retarded"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Yawn"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Airpod",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Normal",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Airpod",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Fullbeard",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Handlebar",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Horseshoe",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Normal",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Afro"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Alopecia"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Bald"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Beanie - Black"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Beanie - Brown"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Beanie - Pink"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Blue Checkmark"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Bowlcut"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Bucket Hat - Army"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Bucket Hat - Black"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Bucket Hat - Cream"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Bucket Hat - Purple"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Bucket Hat - White"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Bucket Hat - Yellow"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Chef"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Comedian"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Comma - Black"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Comma - Pink"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Comma - White"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Comma - Yellow"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Cop Hat"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Cornrow with Bun"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Frog"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Golden Checkmark"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Habibi"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Headband"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Kamikaze"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Lil Chick"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Messy - White"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Mohawk - Green"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Mohawk - Purple"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Mohawk - Red"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Mullet"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Number One Man"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Paper Boat"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Paper Face"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Plant"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Poo"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Spike - Blue"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Spike - Green"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Spike - Red"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Spike - RGB"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Spike - Yellow"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Sunny Side"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Trucker - Black"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Trucker - Brown"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Trucker - Green"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Trucker - Red"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Two Buns"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Sidepart - White",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Sidepart - Black",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Baldness",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Pompadour - Black",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Pompadour - Blonde",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Quiff - Black",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Quiff - Red",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Quiff - Yellow",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Slick Back - Black",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Slick Back - White",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Cloak",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Denim",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "All Cops Are Betting",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Duck Float",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Jumper - Green",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Jumper - Pink",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Jumper - Purple",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Jumper - Red",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Jumper - Yellow",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Kawaii Student",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Life Jacket",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Monkie",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Ninja",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Niqab",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Puffer - Green",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Puffer - Pink",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Puffer - Purple",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Puffer - Yellow",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Shopekeeper - Coffee",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Shopkeeper - Groceries",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Shopkeeper - Seafood",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Sleeveless Turtleneck - Black",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Sleeveless Turtleneck - Red",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Sport Bra",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Tee - Ducksie",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Tee - Hype Cult",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Track - Black",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Track - Mint",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Track - Red",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Turtleneck - Grandma's Gift",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Turtleneck - Grey",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Vest - Army",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Vest - Black",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Vest - Pink",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Vest - Purple",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Windbreaker - Blue",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Windbreaker - Pink",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Windbreaker - Polkadot",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Windbreaker - Striped",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Windbreaker - Yellow",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "All Cops Are Betting",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "At the Barber",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Baggy Tee",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Chef",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Duck Float",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Pink"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Red"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Sweet"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Yellow"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Ocean"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Blue Screen"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Grey"
+          },
+          {
+            "trait_type": "Background",
+            "value": "Green"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "White",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Yellow",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Black",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "White",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Yellow",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Skin",
+            "value": "Black",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Windbreaker - Blue",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Windbreaker - Pink",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Windbreaker - Polkadot",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Windbreaker - Striped",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Windbreaker - Yellow",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Vest - Purple",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Vest - Pink",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Vest - Black",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Vest - Army",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Turtleneck - Grey",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Turtleneck - Grandma's Gift",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Turtleneck - Black",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Track - Red",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Track - Mint",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Track - Black",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Tee - Hype Cult",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Tee - Ducksie",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Shopkeeper - Seafood",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Shopkeeper - Groceries",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Shopekeeper - Coffee",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Puffer - Yellow",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Puffer - Red",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Puffer - Purple",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Puffer - Green",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Office Slaver",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Ninja",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Monkie",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Life Jacket",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Jumper - Purple",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Jumper - Red",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Jumper - Yellow",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Jumper - Pink",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Jumper - Green",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Jersey - Red",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Denim",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Banana",
+            "context": "Fullbody"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Bear",
+            "context": "Fullbody"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Chicken",
+            "context": "Fullbody"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Fish",
+            "context": "Fullbody"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Frog",
+            "context": "Fullbody"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Gorilla",
+            "context": "Fullbody"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Angry"
+          },
+          {
+            "trait_type": "Head",
+            "value": "Magician"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Crippled",
+            "context": "Female"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Crippled",
+            "context": "Male"
+          },
+          {
+            "trait_type": "Outfit",
+            "value": "Raincoat",
+            "context": "Fullbody"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Bored"
+          },
+          {
+            "trait_type": "Face",
+            "value": "Ligma"
           }
         ]
       }
     }
+  },
+  "contextOverrides": {
+    "fullbody": [
+      "head"
+    ]
   },
   "global": {
     "enableDynamicContext": true
   },
   "specific": [
     {
-      "trait": "head",
-      "value": "lowkey_helmet",
+      "trait": "outfit",
+      "value": "niqab",
+      "context": "female",
+      "exclude_with": [
+        {
+          "trait": "head",
+          "value": "comma_-_black"
+        },
+        {
+          "trait": "head",
+          "value": "comma_-_pink"
+        },
+        {
+          "trait": "head",
+          "value": "comma_-_white"
+        },
+        {
+          "trait": "head",
+          "value": "cornrow_with_bun"
+        },
+        {
+          "trait": "head",
+          "value": "afro"
+        },
+        {
+          "trait": "head",
+          "value": "alopecia"
+        },
+        {
+          "trait": "head",
+          "value": "bald"
+        },
+        {
+          "trait": "head",
+          "value": "bowlcut"
+        },
+        {
+          "trait": "head",
+          "value": "comma_-_yellow"
+        },
+        {
+          "trait": "head",
+          "value": "sidepart_-_black",
+          "context": "female"
+        },
+        {
+          "trait": "head",
+          "value": "sidepart_-_white",
+          "context": "female"
+        },
+        {
+          "trait": "head",
+          "value": "magician"
+        },
+        {
+          "trait": "head",
+          "value": "messy_-_white"
+        },
+        {
+          "trait": "head",
+          "value": "mohawk_-_red"
+        },
+        {
+          "trait": "head",
+          "value": "mohawk_-_green"
+        },
+        {
+          "trait": "head",
+          "value": "mohawk_-_purple"
+        },
+        {
+          "trait": "head",
+          "value": "mullet"
+        },
+        {
+          "trait": "head",
+          "value": "spike_-_blue"
+        },
+        {
+          "trait": "head",
+          "value": "spike_-_green"
+        },
+        {
+          "trait": "head",
+          "value": "spike_-_red"
+        },
+        {
+          "trait": "head",
+          "value": "spike_-_rgb"
+        },
+        {
+          "trait": "head",
+          "value": "spike_-_yellow"
+        },
+        {
+          "trait": "head",
+          "value": "two_buns"
+        },
+        {
+          "trait": "head",
+          "value": "habibi"
+        }
+      ]
+    },
+    {
+      "trait": "face",
+      "value": "ligma",
+      "exclude_with": [
+        {
+          "trait": "outfit",
+          "value": "crippled",
+          "context": "male"
+        },
+        {
+          "trait": "outfit",
+          "value": "crippled",
+          "context": "female"
+        }
+      ]
+    },
+    {
+      "trait": "outfit",
+      "value": "ninja",
+      "context": "male",
       "exclude_with": [
         {
           "trait": "face",
-          "value": "bearded_-_eternal",
+          "value": "horseshoe",
+          "context": "male"
+        },
+        {
+          "trait": "face",
+          "value": "handlebar",
+          "context": "male"
+        },
+        {
+          "trait": "face",
+          "value": "fullbeard",
+          "context": "male"
+        }
+      ]
+    },
+    {
+      "trait": "outfit",
+      "value": "ninja",
+      "context": "female",
+      "exclude_with": [
+        {
+          "trait": "face",
+          "value": "handlebar",
+          "context": "male"
+        },
+        {
+          "trait": "face",
+          "value": "fullbeard",
+          "context": "male"
+        },
+        {
+          "trait": "face",
+          "value": "horseshoe",
           "context": "male"
         }
       ]
     }
-  ],
-  "weights": {
-    "Face__": {
-      "90's shock": 36,
-      "Cigar": 36,
-      "clown face": 36,
-      "Eye of Ra": 36,
-      "eye patch": 36,
-      "glasses": 36,
-      "Helix Nebula": 36,
-      "holo": 36,
-      "Monocle": 36,
-      "Normal - Geist": 37,
-      "Normal - Hell": 37,
-      "Normal - Noir": 37,
-      "Normal": 37,
-      "Noroi": 37,
-      "scream": 37,
-      "skull": 37,
-      "Slanderer": 37
-    },
-    "Face__Female": {
-      "lipstick": 620
-    },
-    "Face__Male": {
-      "Bearded - Eternal": 310,
-      "stash": 310
-    },
-    "Head__": {
-      "bandana": 44,
-      "clown": 44,
-      "cone": 44,
-      "crown": 44,
-      "flat cap": 44,
-      "Golden Skull Crown": 44,
-      "Head of Valak": 44,
-      "hook": 44,
-      "Horn of Baphomet": 44,
-      "Lowkey Helmet": 44,
-      "mafia hat": 44,
-      "pirates": 44,
-      "stewardess": 44,
-      "Top Hat": 44
-    },
-    "Head__Female": {
-      "Golden Goddess Hair": 124,
-      "Lust": 124,
-      "marlyn monrow": 124,
-      "Medusa's Hair": 124,
-      "Veil": 124
-    },
-    "Head__Male": {
-      "co worker": 124,
-      "elvis parsley": 124,
-      "God's Hair": 124,
-      "Greed": 124,
-      "Lucifer Crown": 124
-    },
-    "Outfit__": {
-      "cloack mw": 44,
-      "Cloak": 44,
-      "Clothes": 44,
-      "coat m w": 44,
-      "Dark Armor": 44,
-      "Golden Armor": 44,
-      "jacket": 44,
-      "mummy wm": 44,
-      "mw black and white": 44,
-      "pirates crew": 44,
-      "robe wm": 44,
-      "scraf": 44,
-      "Skull": 44,
-      "Wing of Azazel": 44
-    },
-    "Outfit__Female": {
-      "dress female": 56,
-      "dress w": 56,
-      "dress": 56,
-      "Evil servant": 56,
-      "glamor dress": 56,
-      "Goddess Dress": 56,
-      "hypocrite": 56,
-      "Succubus": 56,
-      "women cloth": 56,
-      "women suit": 56,
-      "women top": 56
-    },
-    "Outfit__Male": {
-      "1.": 68,
-      "bike jacket": 69,
-      "chainz": 69,
-      "Corrupt": 69,
-      "jaz male": 69,
-      "monk": 69,
-      "Ragnarok": 69,
-      "vest": 69,
-      "with flower": 69
-    },
-    "Skin__Female": {
-      "Aphrodite": 124,
-      "Elf": 124,
-      "Geist": 124,
-      "Hell": 124,
-      "Noir": 124
-    },
-    "Skin__Male": {
-      "An": 124,
-      "Caishen": 124,
-      "Geist": 124,
-      "Hell": 124,
-      "Noir": 124
-    },
-    "Background__": {
-      "Abyss": 103,
-      "Heaven": 103,
-      "Hell": 103,
-      "Natura": 103,
-      "Nightmare": 104,
-      "Noir": 104
-    }
-  }
+  ]
 }

@@ -74,8 +74,8 @@ fs.readdirSync(layersPath).forEach((traitType) => {
     const valueRaw = parts[parts.length - 1].replace(/\.(png|jpg)$/i, "");
     const contextRaw = parts.length > 1 ? parts.slice(0, -1).join("/") : "";
 
-    const bucket = ctxKey(traitType, contextRaw);
-    const value = sanitize(valueRaw);
+    const bucket = `${sanitize(traitType)}__${sanitize(contextRaw || "")}`;
+    const value = valueRaw; // <── jangan disanitize
 
     traitRules.weights[bucket] = traitRules.weights[bucket] || {};
     if (traitRules.weights[bucket][value] == null) {
@@ -97,10 +97,10 @@ const { generateAllNFT, getProgress, cancelGenerate } = require("./generator");
 const app = express();
 const PORT = 4000;
 
-if (process.env.NODE_ENV !== "production") {
-  const morgan = require("morgan");
-  app.use(morgan("dev"));
-}
+// if (process.env.NODE_ENV !== "production") {
+//   const morgan = require("morgan");
+//   app.use(morgan("dev"));
+// }
 
 // ✅ Middleware CORS - allow all origins
 app.use(
@@ -308,7 +308,6 @@ app.post("/api/rules", async (req, res) => {
           ...(r.context ? { context: sanitize(r.context) } : {}),
         }));
       }
-
       if (Array.isArray(rule.require_with)) {
         fixed.require_with = rule.require_with.map((r) => ({
           trait: sanitize(r.trait),
@@ -316,7 +315,6 @@ app.post("/api/rules", async (req, res) => {
           ...(r.context ? { context: sanitize(r.context) } : {}),
         }));
       }
-
       if (Array.isArray(rule.always_with)) {
         fixed.always_with = rule.always_with.map((r) => ({
           trait: sanitize(r.trait),
@@ -324,7 +322,6 @@ app.post("/api/rules", async (req, res) => {
           ...(r.context ? { context: sanitize(r.context) } : {}),
         }));
       }
-
       return fixed;
     });
   }
@@ -357,21 +354,21 @@ app.post("/api/rules", async (req, res) => {
       });
       mergedSpecific = [...mergedSpecific, ...newSpecific];
     } else {
-      mergedGlobal = global; // update global kalau dikirim
-      mergedSpecific = sanitizedSpecific; // replace specific sesuai UI
+      mergedGlobal = global;
+      mergedSpecific = sanitizedSpecific;
     }
 
-    // ⛔ PENTING: pertahankan weights & showTo lama
+    // ✅ PENTING: pertahankan semua key lain termasuk contextOverrides
     const finalRules = {
       weights: existing.weights || {},
       showTo: existing.showTo || {},
       tags: existing.tags || {},
+      contextOverrides: existing.contextOverrides || {}, // <<== tambahkan ini
       global: mergedGlobal,
       specific: mergedSpecific,
     };
 
     writeJsonIfChangedSync(traitRulesPath, finalRules);
-
     res.json({ message: "✅ Rules saved successfully!" });
   } catch (err) {
     console.error("❌ Error saving rules:", err);
@@ -434,6 +431,161 @@ app.delete("/api/rules", async (req, res) => {
   }
 });
 
+// === GET single specific rule for prefill ===
+app.get("/api/rules/specific/:trait/:value", (req, res) => {
+  try {
+    const { trait, value } = req.params;
+    const { context = "" } = req.query;
+    const { sanitize } = require("./utils/sanitize");
+
+    if (!fs.existsSync(traitRulesPath)) {
+      return res.status(404).json({ error: "traitrules.json not found" });
+    }
+
+    const rules = JSON.parse(fs.readFileSync(traitRulesPath, "utf8"));
+    const list = Array.isArray(rules.specific) ? rules.specific : [];
+
+    const found = list.find(
+      (r) =>
+        sanitize(r.trait) === sanitize(trait) &&
+        sanitize(r.value) === sanitize(value) &&
+        sanitize(r.context || "") === sanitize(context || "")
+    );
+
+    if (!found) {
+      return res.status(404).json({ error: "Rule not found" });
+    }
+
+    res.json(found);
+  } catch (err) {
+    console.error("❌ Failed to read specific rule:", err);
+    res.status(500).json({ error: "Failed to read specific rule" });
+  }
+});
+
+// === PATCH edit / merge one specific rule ===
+app.patch("/api/rules/specific/:trait/:value", async (req, res) => {
+  try {
+    const { trait, value } = req.params;
+    const {
+      context = "",
+      add = {},
+      remove = {},
+      replace = {},
+    } = req.body || {};
+    const { sanitize } = require("./utils/sanitize");
+
+    if (!fs.existsSync(traitRulesPath)) {
+      return res.status(404).json({ error: "traitrules.json not found" });
+    }
+
+    const rules = JSON.parse(fs.readFileSync(traitRulesPath, "utf8"));
+    const list = Array.isArray(rules.specific) ? rules.specific : [];
+
+    const tSan = sanitize(trait);
+    const vSan = sanitize(value);
+    const cSan = sanitize(context || "");
+
+    const idx = list.findIndex(
+      (r) =>
+        sanitize(r.trait) === tSan &&
+        sanitize(r.value) === vSan &&
+        sanitize(r.context || "") === cSan
+    );
+    if (idx === -1) return res.status(404).json({ error: "Rule not found" });
+
+    const target = list[idx];
+
+    // === 1️⃣ Replace mode (override full arrays) ===
+    if (replace && Object.keys(replace).length > 0) {
+      if (Array.isArray(replace.exclude_with))
+        target.exclude_with = replace.exclude_with.map((r) => ({
+          trait: sanitize(r.trait),
+          value: sanitize(r.value),
+          ...(r.context ? { context: sanitize(r.context) } : {}),
+        }));
+      if (Array.isArray(replace.require_with))
+        target.require_with = replace.require_with.map((r) => ({
+          trait: sanitize(r.trait),
+          value: sanitize(r.value),
+          ...(r.context ? { context: sanitize(r.context) } : {}),
+        }));
+      if (Array.isArray(replace.always_with))
+        target.always_with = replace.always_with.map((r) => ({
+          trait: sanitize(r.trait),
+          value: sanitize(r.value),
+          ...(r.context ? { context: sanitize(r.context) } : {}),
+        }));
+    }
+
+    // === 2️⃣ Merge mode (add/remove incremental) ===
+    const mergeField = (field, delta) => {
+      if (!delta || (!Array.isArray(delta.add) && !Array.isArray(delta.remove)))
+        return;
+      target[field] = Array.isArray(target[field]) ? target[field] : [];
+
+      if (Array.isArray(delta.remove)) {
+        target[field] = target[field].filter(
+          (x) =>
+            !delta.remove.some(
+              (r) =>
+                sanitize(r.trait) === sanitize(x.trait) &&
+                sanitize(r.value) === sanitize(x.value) &&
+                sanitize(r.context || "") === sanitize(x.context || "")
+            )
+        );
+      }
+
+      if (Array.isArray(delta.add)) {
+        for (const r of delta.add) {
+          const newItem = {
+            trait: sanitize(r.trait),
+            value: sanitize(r.value),
+            ...(r.context ? { context: sanitize(r.context) } : {}),
+          };
+          const exists = target[field].some(
+            (x) =>
+              sanitize(x.trait) === newItem.trait &&
+              sanitize(x.value) === newItem.value &&
+              sanitize(x.context || "") === (newItem.context || "")
+          );
+          if (!exists) target[field].push(newItem);
+        }
+      }
+    };
+
+    mergeField(
+      "exclude_with",
+      add.exclude_with || remove.exclude_with
+        ? { add: add.exclude_with, remove: remove.exclude_with }
+        : add.exclude_with
+    );
+    mergeField(
+      "require_with",
+      add.require_with || remove.require_with
+        ? { add: add.require_with, remove: remove.require_with }
+        : add.require_with
+    );
+    mergeField(
+      "always_with",
+      add.always_with || remove.always_with
+        ? { add: add.always_with, remove: remove.always_with }
+        : add.always_with
+    );
+
+    // === 3️⃣ Save file ===
+    rules.specific[idx] = target;
+    writeJsonIfChangedSync(traitRulesPath, rules);
+    res.json({ ok: true, message: "Rule updated", rule: target });
+  } catch (err) {
+    console.error("❌ Failed to patch specific rule:", err);
+    res.status(500).json({
+      error: "Failed to patch specific rule",
+      detail: String(err.message || err),
+    });
+  }
+});
+
 // === SHOWTO: Upsert satu item (create/update) ===
 app.patch("/api/rules/showto", (req, res) => {
   try {
@@ -447,7 +599,7 @@ app.patch("/api/rules/showto", (req, res) => {
     value = sanitize(String(value));
     tags = tags.map((t) => sanitize(String(t))).filter(Boolean);
 
-    // baca rules lama, jaga field lain
+    // baca rules lama
     let rules = { weights: {}, showTo: {}, global: {}, specific: [] };
     if (fs.existsSync(traitRulesPath)) {
       rules = JSON.parse(fs.readFileSync(traitRulesPath, "utf8")) || rules;
@@ -455,11 +607,12 @@ app.patch("/api/rules/showto", (req, res) => {
 
     rules.showTo = rules.showTo || {};
     rules.showTo[trait_type] = rules.showTo[trait_type] || {};
-    rules.showTo[trait_type][value] = tags; // overwrite sesuai UI
-    rules.tags = rules.tags || {};
+    rules.showTo[trait_type][value] = tags;
+
+    // ✅ Tambahkan baris ini biar contextOverrides gak hilang
+    rules.contextOverrides = rules.contextOverrides || {};
 
     writeJsonIfChangedSync(traitRulesPath, rules);
-
     return res.json({ message: "ok", tags: rules.showTo[trait_type][value] });
   } catch (e) {
     console.error("❌ Failed to save showTo:", e);
@@ -869,27 +1022,33 @@ app.get("/api/generate-progress", (req, res) => {
 app.post("/api/save-rules", (req, res) => {
   try {
     const { weights } = req.body;
-
     const rulesPath = path.join(__dirname, "utils", "traitrules.json");
 
-    // Ambil data lama (showTo, specific)
-    let existing = { weights: {}, showTo: {}, specific: [] };
+    let existing = {
+      weights: {},
+      showTo: {},
+      specific: [],
+      tags: {},
+      contextOverrides: {},
+    };
     if (fs.existsSync(rulesPath)) {
-      existing = JSON.parse(fs.readFileSync(rulesPath));
+      existing = JSON.parse(fs.readFileSync(rulesPath, "utf8"));
     }
 
-    // Gabungkan: replace weights tapi tetap simpan showTo & specific
-    const updated = {
-      ...existing,
-      weights: weights !== undefined ? weights : existing.weights,
-    };
+    if (weights && typeof weights === "object") {
+      for (const [bucket, values] of Object.entries(weights)) {
+        existing.weights[bucket] = {
+          ...(existing.weights[bucket] || {}),
+          ...values,
+        };
+      }
+    }
 
-    writeJsonIfChangedSync(rulesPath, updated);
-
-    console.log("✅ Weights saved!");
+    writeJsonIfChangedSync(rulesPath, existing);
+    console.log("✅ Weights saved successfully");
     res.json({ success: true });
   } catch (err) {
-    console.error("❌ Failed to save rules", err);
+    console.error("❌ Failed to merge weights:", err);
     res.status(500).json({ success: false, error: err.message });
   }
 });
@@ -1131,7 +1290,8 @@ function rebuildWeights() {
       const valueRaw = parts.at(-1).replace(/\.png$/i, ""); // PNG-only
       const contextRaw = parts.length > 1 ? parts.slice(0, -1).join("/") : "";
       const bucket = `${sanitize(traitType)}__${sanitize(contextRaw || "")}`;
-      const value = sanitize(valueRaw);
+      const value = valueRaw; // biarin asli, jangan disanitize
+
       rules.weights[bucket] ??= {};
       if (rules.weights[bucket][value] == null) {
         rules.weights[bucket][value] = 100;
@@ -1228,11 +1388,9 @@ app.post(
         const seg = rel.split("/").filter(Boolean);
         if (seg.length < 3) {
           console.error("Invalid path (butuh Project/Layer/file):", rel);
-          return res
-            .status(400)
-            .json({
-              error: `Invalid path: ${rel}. Minimal Project/Layer/file`,
-            });
+          return res.status(400).json({
+            error: `Invalid path: ${rel}. Minimal Project/Layer/file`,
+          });
         }
       }
 
@@ -1320,6 +1478,7 @@ app.post(
       }
 
       // --- 4) tulis ke disk ---
+      // --- 4) tulis ke disk ---
       for (const [rel, { buf, from, sha1, size }] of plan.entries()) {
         const dst = path.join(layersPath, rel);
         console.log(
@@ -1332,8 +1491,57 @@ app.post(
           "| sha1:",
           sha1
         );
+
         await fs.mkdir(path.dirname(dst), { recursive: true });
-        await fs.writeFile(dst, buf);
+
+        try {
+          // 'wx' = fail kalau file sudah ada (biar gak overwrite diam-diam)
+          await fs.outputFile(dst, buf, { flag: "wx" });
+        } catch (e) {
+          if (e && e.code === "EEXIST") {
+            // sudah ada → cek hash di disk
+            const exist = await fs.readFile(dst);
+            const sha1Disk = crypto
+              .createHash("sha1")
+              .update(exist)
+              .digest("hex");
+            if (sha1Disk !== sha1) {
+              // beda konten → kasih 409 (biar user sadar)
+              return res.status(409).json({
+                error: "target exists with different content",
+                rel,
+                from,
+              });
+            }
+            // sama persis → skip tulis
+            debugList.push({
+              rel,
+              from,
+              bytes: size,
+              sha1,
+              dst,
+              note: "already-exists-same-content",
+            });
+            continue;
+          }
+          console.error("outputFile failed:", e);
+          return res
+            .status(500)
+            .json({ error: "write failed", detail: String(e.message || e) });
+        }
+
+        // verifikasi baca balik (opsional)
+        const wrote = await fs.readFile(dst);
+        const sha1Disk = crypto.createHash("sha1").update(wrote).digest("hex");
+        if (sha1Disk !== sha1) {
+          console.error("sha1 mismatch after write", {
+            rel,
+            from,
+            sha1Plan: sha1,
+            sha1Disk,
+          });
+        }
+
         debugList.push({ rel, from, bytes: size, sha1, dst });
       }
 
